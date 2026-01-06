@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="Chandu Baya Reddy | Embedded Systems & AI Portfolio">
+    <meta property="og:description"
+        content="M.Sc. ICT Student specializing in Embedded Systems, AI, and IoT. Check out my projects in Robotics, Automotive Validation, and Audio Processing.">
+    <meta property="og:image" content="https://chandubreddy819.github.io/Portfolio/assets/profile.jpg">
+    <meta property="og:url" content="https://chandubreddy819.github.io/Portfolio/">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -24,6 +31,7 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -74,6 +82,46 @@
         </div>
     </section>
 
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience & Education</h2>
+            <div class="timeline">
+                <!-- Item 1: Masters -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Oct 2023 - Present</span>
+                        <h3 class="timeline-title">M.Sc. Information & Communication Technology</h3>
+                        <h4 class="timeline-subtitle">Friedrich-Alexander-Universität (FAU), Erlangen</h4>
+                        <p>Specializing in Embedded Systems and Machine Learning. Relevant coursework: Deep Learning,
+                            Communication Networks, Embedded Systems.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Bosch -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jan 2023 - July 2023</span>
+                        <h3 class="timeline-title">Project Trainee</h3>
+                        <h4 class="timeline-subtitle">Robert Bosch</h4>
+                        <p>Developed full automation for sensor validation systems. Designed hardware circuits and
+                            Python/MATLAB scripts for data analysis, significantly reducing testing time.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Bachelors -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2019 - 2023</span>
+                        <h3 class="timeline-title">B.E. Electronics & Communication</h3>
+                        <h4 class="timeline-subtitle">Anna University</h4>
+                        <p>Foundation in electronics, circuit design, and programming. Completed multiple capstone
+                            projects in IoT and Robotics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
@@ -84,7 +132,11 @@
                         class="card-image">
                     <div class="card-content">
                         <h3>Low-Power BLE & Mioty Tag</h3>
-                        <p class="project-tech">KiCad, STM32, Low-Power Design</p>
+                        <div class="project-tech-badges">
+                            <span class="tech-badge">KiCad</span>
+                            <span class="tech-badge">STM32</span>
+                            <span class="tech-badge">Low-Power</span>
+                        </div>
                         <p>Designed a compact, power-efficient localization tag with 8+ months battery life. Integrated
                             LoRa transceiver and 9-axis IMU on a custom multi-layer PCB.</p>
                         <div class="card-links">
@@ -100,7 +152,11 @@
                         class="card-image">
                     <div class="card-content">
                         <h3>Sensor Testing Automation</h3>
-                        <p class="project-tech">Python, MATLAB, Raspberry Pi</p>
+                        <div class="project-tech-badges">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">MATLAB</span>
+                            <span class="tech-badge">Raspberry Pi</span>
+                        </div>
                         <p>Automated validation system for automotive sensors at Robert Bosch. Reduced manual test time
                             by 40% using custom hardware and analysis scripts.</p>
                         <div class="card-links">
@@ -115,7 +171,11 @@
                         class="card-image">
                     <div class="card-content">
                         <h3>Audio Signal Processing</h3>
-                        <p class="project-tech">Python, MATLAB, Librosa</p>
+                        <div class="project-tech-badges">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">MATLAB</span>
+                            <span class="tech-badge">Librosa</span>
+                        </div>
                         <p>Implemented STFT-based analysis, noise profiling, and objective metrics (SNR, SDR). Automated
                             figure generation for research at AudioLabs.</p>
                         <div class="card-links">
@@ -130,7 +190,11 @@
                         class="card-image">
                     <div class="card-content">
                         <h3>Solar Powered Wheelchair</h3>
-                        <p class="project-tech">Arduino, IoT, RFID</p>
+                        <div class="project-tech-badges">
+                            <span class="tech-badge">Arduino</span>
+                            <span class="tech-badge">IoT</span>
+                            <span class="tech-badge">RFID</span>
+                        </div>
                         <p>Developed an autonomous navigation wheelchair powered by solar energy. <strong>Published
                                 scientific paper in IJERT.</strong></p>
                         <div class="card-links">
@@ -145,7 +209,11 @@
                         class="card-image">
                     <div class="card-content">
                         <h3>Hand Gesture Robot Car</h3>
-                        <p class="project-tech">ESP32-Cam, Arduino, MPU6050</p>
+                        <div class="project-tech-badges">
+                            <span class="tech-badge">ESP32-Cam</span>
+                            <span class="tech-badge">Arduino</span>
+                            <span class="tech-badge">MPU6050</span>
+                        </div>
                         <p>Implemented motion-based control via Gyroscope/Accelerometer sensors holding a live-streaming
                             camera for remote control.</p>
                         <div class="card-links">
