@@ -602,6 +602,69 @@ footer {
     }
 }
 
+/* Learning & Goals Section */
+.learning-section {
+    padding-bottom: 2rem;
+}
+
+.learning-container {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9));
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 20px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.learning-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.learning-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.learning-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 150px;
+}
+
+.learning-icon {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s;
+}
+
+.learning-item:hover .learning-icon {
+    transform: scale(1.1);
+    color: var(--primary-color);
+}
+
+.learning-item h4 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.learning-item p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
 /* Responsive Media Queries */
 @media (max-width: 768px) {
     .nav-links {
