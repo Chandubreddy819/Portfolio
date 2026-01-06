@@ -207,16 +207,57 @@ section {
     justify-content: center;
 }
 
+/* Typewriter Cursor */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--primary-color);
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
 .btn-secondary {
     background: transparent;
     border: 2px solid var(--secondary-color);
     color: var(--secondary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pulse Animation for Primary Button */
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(129, 140, 248, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(129, 140, 248, 0);
+    }
 }
 
 .btn-secondary:hover {
     background: rgba(129, 140, 248, 0.1);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(129, 140, 248, 0.3);
+}
+
+.btn-secondary.pulse {
+    animation: pulse-glow 2s infinite;
 }
 
 /* About */

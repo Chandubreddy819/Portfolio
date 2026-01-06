@@ -41,3 +41,43 @@ styleSheet.innerText = `
     }
 `;
 document.head.appendChild(styleSheet);
+
+// --- Typewriter Effect ---
+const texts = [
+    "M.Sc. ICT Student",
+    "Embedded Systems Engineer",
+    "AI Enthusiast",
+    "IoT Developer"
+];
+
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+(function type() {
+    if (count === texts.length) {
+        count = 0;
+    }
+    currentText = texts[count];
+    letter = currentText.slice(0, ++index);
+
+    document.querySelector(".typewriter-text").textContent = letter;
+
+    if (letter.length === currentText.length) {
+        count++;
+        index = 0;
+        setTimeout(type, 2000); // Wait 2s before deleting/next
+    } else {
+        setTimeout(type, 100); // Typing speed
+    }
+})();
+
+// --- Pulse Button ---
+const cvBtn = document.querySelector('.btn-secondary');
+if (cvBtn) {
+    cvBtn.classList.add('pulse');
+    // Stop pulsing on hover so it doesn't look weird
+    cvBtn.addEventListener('mouseenter', () => cvBtn.classList.remove('pulse'));
+    cvBtn.addEventListener('mouseleave', () => cvBtn.classList.add('pulse'));
+}
