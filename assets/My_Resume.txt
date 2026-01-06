@@ -1,0 +1,77 @@
+Chandu Baya Reddy
+(he/him)
+Grazerstr. 1, Erlangen, 91052
+Phone: +49 15566098124 Email: chandu.baya.reddy@gmail.com
+ï linkedin.com/in/chandu-b-reddy-a42291170/ § github.com/Chandubreddy819
+About
+M.Sc. ICT student (3rd semester) at FAU Erlangen with expertise in communication systems, embedded development, and
+machine learning. Industry-proven skills from Bosch in designing embedded control units and optimising test systems for
+efficiency. Strong in Python, C/C++, MATLAB, and IoT hardware/software integration. Available for working student roles
+20hrs/week during semester; expected graduation September 2026
+Education
+FAU Erlangen-Nuremberg April 2024 – current
+Master of Science in Information and Communication Technology Erlangen, Bayern, Germany
+Major: Networks & Digital Communication
+Reva University, Bengaluru August 2018 – June 2022
+Bachelor of Technology in Electronics and Communication Bengaluru, Karnataka, India
+Major: Digital signal Processing, Wireless communications
+GPA: 1.4
+Current Projects
+Joint Bluetooth & Mioty Localisation systems July 2025 – Ongoing
+Tech Stack: BLE, mioty, STM32, Python, C/C++, Ki Cad, Altium Designer, Leaflet.js, Web Visualization.
+• Designing a Ultra-low power PCB for longer life cycles which includes battery management, LDO selection and sleep
+modes. Optimizing the Power management with Algorithms in Software stack other than its main application.
+• Developing BLE + mioty localization tags (CR2032-powered) and algorithms, achieving sub-2m accuracy; visualized in
+real-time via Leaflet.js map
+Audio signal processing - Speech synthesis and Analysis April 2025 – July 2025
+Tech Stack: Python, Matlab, Librosa, Matplotlib, scipy, Sound-Stream, LaTeX.
+• Implemented STFT-based analysis, noise profiling, and objective metrics (SNR, SDR); automated figure/report generation
+(MATLAB) at LIKE Chair, AudioLabs.
+• Presented a scientific paper based on Binaural Speech Synthesis.
+Professional Experience
+Robert Bosch August 2022 - August 2023
+Graduate Apprentice Bengaluru, India
+Product Development | Sensors | Power-Train Solutions
+Technical skills: Raspberry Pi, Arduino (various other add-on boards), Python libs like NumPy, pandas, matplotlib, PyQt5
+etc., CAN, Linux, Simulink, EasyEDA and JIRA.
+• Designed & validated sensor test control units; built automated measurement routines (Python/MATLAB) to acquire
+and analyze signals, cutting test time 40% and cost 50%.
+• Performed electrical measurements (CAN/SENT sensors), executed calibration of benches & probes, and documented
+traceable procedures and results
+• Led failure analysis / root-cause investigations on noisy/unstable signals (clipping, drift, wiring faults) using spectral
+analysis, logging, and reproducible test scripts..
+• Produced reports with plots, acceptance criteria, and equipment calibration records for release readiness.
+Technical Skills
+Measurements & Test:Acoustical/electrical measurements, calibration, equipment monitoring, data logging, failure
+analysis, root-cause, traceability.
+Analysis & Tools: MATLAB (signal/acoustic analysis, bash scripts), Python (NumPy, SciPy, Matplotlib, Pandas),
+Simulink, Excel/PowerPoint reporting.
+Hardware/Embedded: Microcontrollers (Arduino/RPi, STM32), CAN/SENT, I2C, SPI, UART, PCB Design,
+lab instrumentation usage.
+Programming & Development: Python | C, C++ | Embedded C.
+Machine Learning: TensorFlow, PyTorch, Machine Learning, Deep Learning.
+Software & Tools: VS Code, PyCharm, EasyEDA, LTspice, Altium Designer, kiCAD, Linux (Ubuntu/Debian), Bash
+Scripting, Git/GitHub, LaTeX.
+Data & Productivity Tools: Microsoft Office Suite (Word, Excel, PowerPoint), Power BI, JIRA.
+Projects (Bachelors)
+Solar Powered Wheelchair with Line Follower system with RF-ID Authentication Nov 2021 – April 2022
+Tech Stack: Arduino-Uno, RC-522, IR sensor array, Motor-driver L298N, Relay 10A/5V, ESP32-cam, Solar panels.
+· Developed autonomous navigation wheelchair powered by solar energy with RFID-based route authentication.
+· Integrated line-following and obstacle avoidance system with live video streaming.
+Hand Gesture controlled robot car with ESP32Cam module April 2020 – August 2020
+Tech Stack: Arduino-nano, Lilypad arduino, MPU6050 (Gyroscope& Accelerometer), Motor-drivers, Wi-Fi
+· Implemented motion-based control via MPU6050 sensors, enabling intuitive navigation.
+· Integrated live-streaming camera for remote control and monitoring.
+Participations & Publications
+• Participated in E-yantra Robotics Competition organized by IIT Bombay.
+• Engaged in Smart-irrigation mini project focused on real-time analysis of IOT sensors, hosted by Smart India Hackathon.
+• Published a Scientific paper on my Bachelor‘s major project "Solar Powered Wheelchair with Line Follower system with
+RFID Authentication" Article ID: IJERTCONV10IS11104. IJERT.
+Language Skills
+Mother Tongue: Kannada, Telugu
+Other Languages: English - C1, German - A2 , Hindi
+Accomplishments
+Awards: Employee of the Month (Robert Bosch) – for contributions to Embedded Systems & Sensor Testing in Powertrain
+Solutions.
+Clean energy projects: Received Project funding for “Tertiary waste-water treatment automation” project from
+Karnataka State Council for Science and Technology (KSCST).

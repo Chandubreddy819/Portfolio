@@ -1,0 +1,104 @@
+Hardware Design for a Low-Power BLE &
+Mioty Localization Tag
+● Project Timeline: August 2024 – Ongoing
+● Project Type: University Project (M.Sc. ICT, FAU Erlangen-Nuremberg)
+● Technologies: KiCad, STM32F103, Semtech SX1280, TDK ICM-20948, Low-Power
+Design, Power Budget Analysis, PCB Design
+Project Goal
+As the hardware lead on a three-person team, I am responsible for designing a new, compact, and
+power-efficient localization tag. The project's objective is to replace a module-based prototype with a
+custom PCB that integrates discrete components, reducing both size and cost while enabling operation
+on a single coin cell.
+My Contributions
+● Component-Level PCB Design: I designed a new schematic and multi-layer PCB in KiCad,
+integrating the Semtech SX1280 LoRa transceiver, STM32F103CBU6 microcontroller, and a
+TDK ICM-20948 9-axis motion sensor (IMU).
+● Low-Power Optimization: The entire circuit is engineered for ultra-low power consumption
+from a single CR2032 coin cell, based on manufacturer application notes and rigorous power
+budget analysis.
+● RF Antenna Implementation: I am implementing a 2.4 GHz inverted-F antenna based on a
+Texas Instruments reference design (SWRA351b) to ensure optimal wireless performance.
+
+Fig 1 (a): KicaD PCB layout of the circuit
+
+Key Engineering Challenge & Solution: Power Budget
+The primary design constraint was ensuring long-term operation on a CR2032 coin cell, which has a
+limited pulse current capability.
+● Problem: Analysis showed that MIOTY transmissions require a ~24 mA pulse current,
+exceeding the ~15-20 mA peak rating of a standard CR2032 cell, which would cause voltage
+sag and system instability.
+● Analysis: I conducted a detailed current consumption analysis for each component in all
+operational states (TX, Sleep, BLE Advertising). The calculated average current draw in the
+target low-power mode is ~38 μA.
+● Result & Solution: This analysis predicts a theoretical battery life of approximately 8.1
+months. To resolve the pulse current issue, I specified a low-ESR reservoir capacitor (~10
+mF) to supplement the coin cell during high-demand transmission bursts, ensuring a stable
+power rail.
+
+Table 1: Summary table from your power budget analysis
+Future Contributions: My role will expand to include implementing the core localization algorithms
+in C and supporting the integration with the Leaflet.js web-based map visualization.
+
+For Schematic: please visit https://github.com/Chandubreddy819
+
+Component /
+Mode Current Draw
+
+Duration /
+Frequency
+
+Avg. Current
+(μA)
+
+MIOTY TX
+Burst ~24 mA
+
+363 ms / 15
+min 9.7 μA
+
+BLE
+Advertising ~24 mA 9 ms / 60 sec 3.6 μA
+MCU Stop
+Mode ~14 μA Continuous 14.0 μA
+IMU (Accel LP) ~9.8 μA Continuous 9.8 μA
+Radio Sleep &
+Misc. ~1 μA Continuous 1.0 μA
+Total Average ~38.1 μA
+
+Project: Automation of Sensor Testing &
+Validation for Powertrain Solutions
+● Company: Robert Bosch
+● Role: Graduate Apprentice
+● Timeline: August 2022 – August 2023
+● Technologies: Python (NumPy, Matplotlib, PyQt), MATLAB, Raspberry Pi, CAN/SENT,
+JIRA, Simulink
+Project Goal
+The manual validation process for automotive powertrain sensors was a significant bottleneck, being
+slow, costly, and susceptible to inconsistencies. My primary objective was to design and implement an
+automated system to improve the efficiency, reliability, and cost-effectiveness of these essential tests.
+My Contributions & Responsibilities
+● Automated Test System Design: I designed and validated custom sensor test control units
+using Raspberry Pi and various microcontrollers. These units were responsible for interfacing
+with sensors and acquiring measurement data.
+● Scripting & Data Analysis: I developed a suite of automated measurement and analysis
+scripts using Python and MATLAB. These scripts managed the entire test cycle: from
+acquiring raw CAN/SENT sensor signals to processing the data and generating final plots and
+reports.
+● Root-Cause Failure Analysis: I led investigations into signal integrity issues such as signal
+clipping, drift, and noise. My process involved using spectral analysis and creating
+reproducible test scripts to systematically identify the root cause of hardware and wiring
+faults.
+● Process & Documentation: I was responsible for the calibration of test benches and probes,
+and I documented all procedures and results to ensure full traceability for product release
+readiness.
+● Demo of the Tool: QCT_Demo.mp4
+
+Fig 2: 2 prototypes of the Quick Check Tool
+
+Key Achievements & Impact
+My contributions led to significant, measurable improvements in the product development workflow.
+● Efficiency: The automated test routines reduced manual test time by 40%.
+● Cost Reduction: The use of low-cost hardware like Raspberry Pi cut the project's
+equipment costs by 50%.
+● Recognition: I was awarded "Employee of the Month" for my contributions to embedded
+systems and sensor testing.
