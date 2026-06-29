@@ -161,6 +161,7 @@ function renderProjects(projects, containerId = 'project-grid') {
       <div class="project-card-body">
         <h3 class="project-card-title">${project.title}</h3>
         <p class="project-card-summary">${project.summary}</p>
+        ${project.demoLink ? `<a href="${project.demoLink}" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; margin-bottom: 1.5rem; display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation();"><i class="fas fa-play-circle"></i>Watch Demo</a>` : ''}
         <div class="project-card-tech">
           ${project.tech.slice(0, 4).map(t => `<span class="chip">${t}</span>`).join('')}
         </div>
@@ -247,7 +248,7 @@ function renderProjectDetail(project) {
 
   // Title & summary
   document.getElementById('project-detail-title').textContent = project.title;
-  document.getElementById('project-detail-summary').textContent = project.summary;
+  document.getElementById('project-detail-summary').innerHTML = project.summary + (project.demoLink ? `<br><br><a href="${project.demoLink}" target="_blank" class="btn btn-secondary" style="display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;"><i class="fas fa-play-circle"></i>Watch Demo Video</a>` : '');
 
   // Tech chips (including context tags)
   const techContainer = document.getElementById('project-detail-tech');
