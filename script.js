@@ -134,7 +134,7 @@ function renderTimeline(experience) {
         <h4 class="timeline-company">${entry.company}</h4>
         <div class="timeline-location">${entry.location}</div>
         <p class="timeline-description">${entry.description}</p>
-        ${entry.demoLink ? `<a href="${entry.demoLink}" target="_blank" class="btn btn-secondary" style="margin-bottom: 1.5rem; display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;"><i class="fas fa-play-circle"></i>Watch Demo Video</a>` : ''}
+        ${entry.demoLink ? `<a href="${entry.demoLink}" target="_blank" class="btn btn-secondary" style="margin-bottom: 1.5rem; display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;"><i class="fas fa-play-circle" style="margin-right: 0.4rem;"></i>Watch Demo Video</a>` : ''}
         <div class="timeline-tech">
           ${entry.tech.map(t => `<span class="chip">${t}</span>`).join('')}
         </div>
