@@ -44,6 +44,7 @@ const experienceData = [
     "company": "Robert Bosch",
     "location": "BENGALURU, IN",
     "description": "Designed and validated sensor test control units; built automated measurement routines in Python and MATLAB to acquire and analyze signals, reducing test time by 40% and operational costs by 50%. Performed electrical measurements via CAN/SENT interfaces. Led failure analysis and root-cause investigations using spectral analysis. Produced comprehensive release-readiness reports.",
+    "demoLink": "https://drive.google.com/file/d/1da3qYYR5slYxQ2iN6I2MI2HlOFCDFEFS/view",
     "duration": "1.0 yr",
     "tech": ["Raspberry Pi", "Arduino", "Python", "MATLAB/Simulink", "CAN/SENT", "Linux", "EasyEDA", "JIRA"]
   },
