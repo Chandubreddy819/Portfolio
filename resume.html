@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Chandu Baya Reddy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="resume.css">
+</head>
+
+<body>
+
+    <!-- Print controls (hidden during print) -->
+    <div class="print-controls no-print">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        <button onclick="window.print()" class="print-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
+                <rect x="6" y="14" width="12" height="8" />
+            </svg>
+            Save as PDF
+        </button>
+    </div>
+
+    <!-- Resume Content -->
+    <div class="resume" id="resume">
+        <!-- Header -->
+        <header class="resume-header" id="resume-header"></header>
+
+        <!-- Two-column layout -->
+        <div class="resume-body">
+            <div class="resume-main">
+                <!-- About -->
+                <section class="resume-section" id="resume-about"></section>
+
+                <!-- Experience -->
+                <section class="resume-section" id="resume-experience">
+                    <h2 class="resume-section-title">Experience</h2>
+                    <div id="resume-experience-list"></div>
+                </section>
+
+                <!-- Projects -->
+                <section class="resume-section" id="resume-projects">
+                    <h2 class="resume-section-title">Key Projects</h2>
+                    <div id="resume-projects-list"></div>
+                </section>
+            </div>
+
+            <div class="resume-sidebar">
+                <!-- Skills -->
+                <section class="resume-section" id="resume-skills">
+                    <h2 class="resume-section-title">Technical Skills</h2>
+                    <div id="resume-skills-list"></div>
+                </section>
+
+                <!-- Education -->
+                <section class="resume-section" id="resume-education">
+                    <h2 class="resume-section-title">Education</h2>
+                    <div id="resume-education-list"></div>
+                </section>
+
+                <!-- Achievements -->
+                <section class="resume-section" id="resume-achievements">
+                    <h2 class="resume-section-title">Awards & Publications</h2>
+                    <div id="resume-achievements-list"></div>
+                </section>
+
+                <!-- Languages -->
+                <section class="resume-section" id="resume-languages">
+                    <h2 class="resume-section-title">Languages</h2>
+                    <div id="resume-languages-list"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="data/profile.js"></script>
+    <script src="data/experience.js"></script>
+    <script src="data/projects.js"></script>
+    <script src="data/skills.js"></script>
+    <script src="data/achievements.js"></script>
+    <script>
+        async function buildResume() {
+            // Data is now loaded globally from the JS files
+            const profile = profileData;
+            const experience = experienceData;
+            const projects = projectsData;
+            const skills = skillsData;
+            const achievements = achievementsData;
+
+            // Header
+            const header = document.getElementById('resume-header');
+            header.innerHTML = `
+                <h1 class="resume-name">${profile.name}</h1>
+                <div class="resume-contact">
+                    <span>${profile.social.email}</span>
+                    <span>·</span>
+                    <span>github.com/${profile.social.github}</span>
+                    <span>·</span>
+                    <span>linkedin.com/in/${profile.social.linkedin}</span>
+                    <span>·</span>
+                    <span>${profile.status.fields.BASED}</span>
+                </div>
+            `;
+
+            // About
+            const aboutEl = document.getElementById('resume-about');
+            aboutEl.innerHTML = `
+                <h2 class="resume-section-title">About</h2>
+                <p class="resume-text">${profile.intro.replace(/<[^>]*>/g, '')}</p>
+            `;
+
+            // Experience (work only)
+            const workEntries = experience.filter(e => e.type === 'WORK');
+            const expList = document.getElementById('resume-experience-list');
+            workEntries.forEach(entry => {
+                expList.innerHTML += `
+                    <div class="resume-entry">
+                        <div class="resume-entry-header">
+                            <strong>${entry.title}</strong>
+                            <span class="resume-entry-date">${entry.dateRange}</span>
+                        </div>
+                        <div class="resume-entry-sub">${entry.company} — ${entry.location}</div>
+                        <p class="resume-text">${entry.description}</p>
+                        <div class="resume-chips">${entry.tech.map(t => `<span class="resume-chip">${t}</span>`).join('')}</div>
+                    </div>
+                `;
+            });
+
+            // Projects (featured)
+            const featuredProjects = projects.filter(p => p.featured);
+            const projList = document.getElementById('resume-projects-list');
+            featuredProjects.forEach(p => {
+                projList.innerHTML += `
+                    <div class="resume-entry">
+                        <div class="resume-entry-header">
+                            <strong>${p.title}</strong>
+                        </div>
+                        <p class="resume-text">${p.summary}</p>
+                        ${p.metrics ? `<div class="resume-metrics">${p.metrics.map(m => `<span>• ${m}</span>`).join(' ')}</div>` : ''}
+                    </div>
+                `;
+            });
+
+            // Skills
+            const skillsList = document.getElementById('resume-skills-list');
+            skills.forEach(cat => {
+                skillsList.innerHTML += `
+                    <div class="resume-skill-group">
+                        <div class="resume-skill-label">${cat.category}</div>
+                        <div class="resume-skill-values">${cat.skills.map(s => s.name).join(', ')}</div>
+                    </div>
+                `;
+            });
+
+            // Education
+            const eduEntries = experience.filter(e => e.type === 'EDUCATION');
+            const eduList = document.getElementById('resume-education-list');
+            eduEntries.forEach(entry => {
+                eduList.innerHTML += `
+                    <div class="resume-entry resume-entry-compact">
+                        <div class="resume-entry-header">
+                            <strong>${entry.title}</strong>
+                        </div>
+                        <div class="resume-entry-sub">${entry.company}</div>
+                        <div class="resume-entry-date">${entry.dateRange}</div>
+                    </div>
+                `;
+            });
+
+            // Achievements
+            const achList = document.getElementById('resume-achievements-list');
+            if (achievements.awards) {
+                achievements.awards.forEach(a => {
+                    achList.innerHTML += `<div class="resume-entry resume-entry-compact"><strong>${a.title}</strong> — ${a.organization} (${a.year})</div>`;
+                });
+            }
+            if (achievements.publications) {
+                achievements.publications.forEach(p => {
+                    achList.innerHTML += `<div class="resume-entry resume-entry-compact"><strong>${p.title}</strong><br>${p.journal} (${p.year})</div>`;
+                });
+            }
+            if (achievements.funding) {
+                achievements.funding.forEach(f => {
+                    achList.innerHTML += `<div class="resume-entry resume-entry-compact"><strong>${f.title}</strong> — ${f.organization} (${f.year})</div>`;
+                });
+            }
+
+            // Languages
+            const langList = document.getElementById('resume-languages-list');
+            if (achievements.languages) {
+                langList.innerHTML = achievements.languages.map(l =>
+                    `<span class="resume-chip">${l.language} (${l.level})</span>`
+                ).join(' ');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', buildResume);
+    </script>
+</body>
+
+</html>

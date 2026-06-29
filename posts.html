@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts — Chandu Baya Reddy</title>
+    <meta name="description" content="Blog posts about embedded systems, IoT, and engineering.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="posts.html" class="nav-link active">Posts</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+    </nav>
+
+    <!-- Posts Listing / Detail -->
+    <main id="posts-main">
+        <!-- Post listing -->
+        <div class="section" id="posts-listing" style="padding-top: 8rem;">
+            <div class="section-inner">
+                <div class="section-label reveal">
+                    <span class="section-label-tag">Blog</span>
+                </div>
+                <h1 class="section-heading reveal">Notes & writeups.</h1>
+                <div class="post-list" id="post-list"></div>
+            </div>
+        </div>
+
+        <!-- Post detail (hidden by default) -->
+        <div class="post-detail" id="post-detail" style="display: none;">
+            <div class="post-detail-inner">
+                <a href="posts.html" class="project-breadcrumb-back">← All Posts</a>
+                <div class="post-detail-meta" id="post-detail-meta"></div>
+                <h1 class="post-detail-title" id="post-detail-title"></h1>
+                <div class="post-detail-content" id="post-detail-content"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="contact-section" id="contact-section" style="padding: 2rem 8%;">
+        <div class="footer-bottom" id="footer-bottom" style="margin-top: 0;"></div>
+    </footer>
+
+    <script src="data/posts.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

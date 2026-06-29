@@ -4,315 +4,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:title" content="Chandu Baya Reddy | Embedded Systems & AI Portfolio">
+    <title>Chandu Baya Reddy — Embedded Systems & IoT</title>
+    <meta name="description"
+        content="M.Sc. ICT student at FAU Erlangen specializing in Embedded Systems, IoT, and AI. Portfolio showcasing projects in BLE localization, sensor automation, and signal processing.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Chandu Baya Reddy — Embedded Systems & IoT">
     <meta property="og:description"
-        content="M.Sc. ICT Student specializing in Embedded Systems, AI, and IoT. Check out my projects in Robotics, Automotive Validation, and Audio Processing.">
+        content="M.Sc. ICT Student specializing in Embedded Systems, AI, and IoT. Projects in BLE localization, automotive sensor automation, and audio signal processing.">
     <meta property="og:image" content="https://chandubreddy819.github.io/Portfolio/assets/profile.jpg">
     <meta property="og:url" content="https://chandubreddy819.github.io/Portfolio/">
     <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="blob-cont">
-        <div class="blob blob-one"></div>
-        <div class="blob blob-two"></div>
-        <div class="blob blob-three"></div>
-    </div>
 
-    <nav class="navbar">
-        <div class="logo">Portfolio.</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
+    <!-- Navigation -->
+    <nav class="navbar" id="main-nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="posts.html" class="nav-link">Posts</a>
+        <a href="projects.html" class="nav-link">Projects</a>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="profile-img-container">
-                <img src="assets/profile.jpg" alt="Chandu Baya Reddy" class="profile-img">
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-grid">
+            <div class="hero-left">
+                <h1 class="hero-name" id="hero-name"></h1>
+                <p class="hero-degree" id="hero-degree"></p>
+                <div class="hero-chips" id="hero-chips"></div>
+                <p class="hero-intro" id="hero-intro"></p>
+                <div class="hero-availability" id="hero-availability"></div>
+                <div class="hero-buttons" id="hero-buttons"></div>
             </div>
-            <span class="greeting">Hello, I'm</span>
-            <h1 class="name">Chandu Baya Reddy</h1>
-            <p class="tagline"><span class="typewriter-text"></span><span class="cursor">|</span></p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="assets/My_Resume.pdf" class="btn btn-secondary" download>Download CV</a>
+            <div class="hero-right">
+                <div class="status-card" id="status-card">
+                    <div class="status-indicator" id="status-indicator">
+                        <span class="status-dot"></span>
+                    </div>
+                    <img src="assets/profile.jpeg" alt="Chandu Baya Reddy" class="status-photo">
+                    <div class="status-info" id="status-info"></div>
+                </div>
             </div>
+        </div>
+        <div class="status-bar-wrapper">
+            <div class="status-fields-horizontal" id="status-fields"></div>
         </div>
     </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am an M.Sc. ICT student at FAU Erlangen (4th semester) with expertise in communication systems,
-                        embedded development, and machine learning. I have industry-proven skills from Bosch in
-                        designing embedded control units and optimizing test systems.</p>
-                    <p style="margin-top: 1rem;">Strong in Python, C/C++, MATLAB, and IoT hardware/software integration.
-                        I am passionate about creating efficient, scalable solutions.</p>
-                </div>
-                <div class="skills-container">
-                    <!-- Embedded & Hardware -->
-                    <div class="skills-category">
-                        <h3><i class="fas fa-microchip"></i> Embedded & Hardware</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">Embedded C</span>
-                            <span class="skill-tag">STM32 / Arduino</span>
-                            <span class="skill-tag">Raspberry Pi</span>
-                            <span class="skill-tag">Eagle / KiCad</span>
-                            <span class="skill-tag">IoT Protocols</span>
-                        </div>
-                    </div>
-
-                    <!-- AI & Software -->
-                    <div class="skills-category">
-                        <h3><i class="fas fa-brain"></i> AI & Software</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">C / C++</span>
-                            <span class="skill-tag">MATLAB</span>
-                            <span class="skill-tag">TensorFlow / PyTorch</span>
-                            <span class="skill-tag">Machine Learning</span>
-                        </div>
-                    </div>
-
-                    <!-- Tools & Platforms -->
-                    <div class="skills-category">
-                        <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">Git / GitHub</span>
-                            <span class="skill-tag">Linux / Unix</span>
-                            <span class="skill-tag">VS Code</span>
-                            <span class="skill-tag">Jupyter</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- § 01 · Timeline -->
+    <section class="section" id="timeline-section">
+        <div class="section-inner">
+            <div class="section-label reveal">
+                <span class="section-label-tag">§ 01 · Timeline</span>
             </div>
+            <h2 class="section-heading reveal">Experience & education.</h2>
+            <div class="timeline-list" id="timeline-list"></div>
         </div>
     </section>
 
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Experience & Education</h2>
-            <div class="timeline">
-                <!-- Item 1: Masters -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">April 2024 - Present</span>
-                        <h3 class="timeline-title">M.Sc. Information & Communication Technology</h3>
-                        <h4 class="timeline-subtitle">Friedrich-Alexander-Universität (FAU), Erlangen</h4>
-                        <p>Specializing in Embedded Systems and Machine Learning. Relevant coursework: Deep Learning,
-                            Communication Networks, Embedded Systems.</p>
-                    </div>
-                </div>
-
-                <!-- Item 2: Bosch -->
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Aug 2022 - Sept 2023</span>
-                        <h3 class="timeline-title">Graduate Apprentice</h3>
-                        <h4 class="timeline-subtitle">Robert Bosch India</h4>
-                        <p>Developed full automation for sensor validation systems. Designed hardware circuits and
-                            Python/MATLAB scripts for data analysis, significantly reducing testing time.</p>
-                    </div>
-                </div>
-
-                <!-- Item 3: Bachelors -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2018 - 2022</span>
-                        <h3 class="timeline-title">B.E. Electronics & Communication</h3>
-                        <h4 class="timeline-subtitle">Reva University</h4>
-                        <p>Foundation in electronics, circuit design, and programming. Completed multiple capstone
-                            projects in IoT and Robotics.</p>
-                    </div>
-                </div>
+    <!-- § 02 · Selected Work -->
+    <section class="section" id="projects-section">
+        <div class="section-inner">
+            <div class="section-label reveal">
+                <span class="section-label-tag">§ 02 · Selected Work</span>
             </div>
+            <h2 class="section-heading reveal">Things I've built.</h2>
+            <div class="project-grid" id="project-grid"></div>
         </div>
     </section>
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="project-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <img src="assets/project_images/BLE_Mioty.png" alt="Low-Power BLE & Mioty Tag" class="card-image">
-                    <div class="card-content">
-                        <h3>Low-Power BLE & Mioty Tag</h3>
-                        <div class="project-tech-badges">
-                            <span class="tech-badge">KiCad</span>
-                            <span class="tech-badge">STM32</span>
-                            <span class="tech-badge">Low-Power</span>
-                        </div>
-                        <p>Designed a compact, power-efficient localization tag with 8+ months battery life. Integrated
-                            LoRa transceiver and 9-axis IMU on a custom multi-layer PCB.</p>
-                        <div class="card-links">
-                            <a href="https://github.com/Chandubreddy819" target="_blank"><i class="fab fa-github"></i>
-                                View Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <img src="assets/project_images/Bosch_automation.png" alt="Sensor Testing Automation"
-                        class="card-image">
-                    <div class="card-content">
-                        <h3>Sensor Testing Automation</h3>
-                        <div class="project-tech-badges">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">MATLAB</span>
-                            <span class="tech-badge">Raspberry Pi</span>
-                        </div>
-                        <p>Automated validation system for automotive sensors at Robert Bosch. Reduced manual test time
-                            by 40% using custom hardware and analysis scripts.</p>
-                        <div class="card-links">
-                            <span><i class="fas fa-award"></i> Bosch Award Winner</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <img src="assets/project_images/Audio_signal_processing.png" alt="Audio Signal Processing"
-                        class="card-image">
-                    <div class="card-content">
-                        <h3>Audio Signal Processing</h3>
-                        <div class="project-tech-badges">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">MATLAB</span>
-                            <span class="tech-badge">Librosa</span>
-                        </div>
-                        <p>Implemented STFT-based analysis, noise profiling, and objective metrics (SNR, SDR). Automated
-                            figure generation for research at AudioLabs.</p>
-                        <div class="card-links">
-                            <span><i class="fas fa-university"></i> Research Project</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <img src="./assets/project_images/solar_wheelchair_final.png" alt="Solar Powered Wheelchair"
-                        class="card-image">
-                    <div class="card-content">
-                        <h3>Solar Powered Wheelchair</h3>
-                        <div class="project-tech-badges">
-                            <span class="tech-badge">Arduino</span>
-                            <span class="tech-badge">IoT</span>
-                            <span class="tech-badge">RFID</span>
-                        </div>
-                        <p>Developed an autonomous navigation wheelchair powered by solar energy. <strong>Published
-                                scientific paper in IJERT.</strong></p>
-                        <div class="card-links">
-                            <span><i class="fas fa-book"></i> Clean Energy Project</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <img src="./assets/project_images/hand_gesture_robot_final.jpg" alt="Hand Gesture Robot Car"
-                        class="card-image">
-                    <div class="card-content">
-                        <h3>Hand Gesture Robot Car</h3>
-                        <div class="project-tech-badges">
-                            <span class="tech-badge">ESP32-Cam</span>
-                            <span class="tech-badge">Arduino</span>
-                            <span class="tech-badge">MPU6050</span>
-                        </div>
-                        <p>Implemented motion-based control via Gyroscope/Accelerometer sensors holding a live-streaming
-                            camera for remote control.</p>
-                        <div class="card-links">
-                            <span><i class="fas fa-robot"></i> Robotics</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- § 03 · The Toolbox -->
+    <section class="section" id="toolbox-section">
+        <div class="section-inner">
+            <div class="section-label reveal">
+                <span class="section-label-tag">§ 03 · The Toolbox</span>
             </div>
+            <h2 class="section-heading reveal">Languages, protocols, parts, IDEs.</h2>
+            <div class="toolbox-container" id="toolbox-container"></div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-info" style="text-align: center; margin-bottom: 2rem; color: #cbd5e1;">
-                <p><i class="fas fa-envelope"></i> chandu.baya.reddy@gmail.com</p>
-                <p><i class="fas fa-phone"></i> +49 15566098124</p>
-                <p><i class="fas fa-map-marker-alt"></i> Grazerstr. 1, Erlangen, 91052</p>
+    <!-- Contact / Footer -->
+    <footer class="contact-section" id="contact-section">
+        <div class="contact-grid">
+            <div class="contact-left">
+                <h2 class="contact-heading" id="contact-heading"></h2>
+                <p class="contact-subtext" id="contact-subtext"></p>
             </div>
-            <div class="social-links-large"
-                style="display: flex; justify-content: center; gap: 2rem; margin-top: 1rem;">
-                <a href="https://linkedin.com/in/chandu-b-reddy-a42291170/" target="_blank"
-                    style="font-size: 2rem; color: var(--text-color);"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/Chandubreddy819" target="_blank"
-                    style="font-size: 2rem; color: var(--text-color);"><i class="fab fa-github"></i></a>
+            <div class="contact-right">
+                <div class="contact-links-card" id="contact-links"></div>
             </div>
         </div>
-    </section>
-
-    <!-- Future Goals / Learning Section -->
-    <section id="goals" class="learning-section">
-        <div class="container">
-            <h2 class="section-title">Future Focus & Learning</h2>
-            <div class="learning-container">
-                <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto; color: #cbd5e1;">
-                    I am constantly expanding my skillset to build scalable, production-ready AI systems. Currently
-                    exploring cloud-native technologies and MLOps pipelines.
-                </p>
-                <div class="learning-grid">
-                    <div class="learning-item">
-                        <i class="fab fa-microsoft learning-icon"></i>
-                        <h4>Microsoft Azure</h4>
-                        <p>Cloud Computing Services</p>
-                    </div>
-                    <div class="learning-item">
-                        <i class="fab fa-docker learning-icon"></i>
-                        <h4>Docker</h4>
-                        <p>Containerization</p>
-                    </div>
-                    <div class="learning-item">
-                        <i class="fas fa-cubes learning-icon"></i>
-                        <!-- Using cubes as generic substitute for K8s if specific icon missing -->
-                        <h4>Kubernetes</h4>
-                        <p>Orchestration</p>
-                    </div>
-                    <div class="learning-item">
-                        <i class="fas fa-cogs learning-icon"></i>
-                        <h4>MLOps</h4>
-                        <p>Model Deployment & Scaling</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Chandu Baya Reddy. All rights reserved.</p>
-        <div class="social-links">
-            <a href="https://github.com/Chandubreddy819" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/chandu-b-reddy-a42291170/" target="_blank"><i
-                    class="fab fa-linkedin"></i></a>
-        </div>
+        <div class="footer-bottom" id="footer-bottom"></div>
     </footer>
 
+    <script src="data/profile.js"></script>
+    <script src="data/experience.js"></script>
+    <script src="data/projects.js"></script>
+    <script src="data/skills.js"></script>
     <script src="script.js"></script>
 </body>
 

@@ -1,6 +1,6 @@
 Hardware Design for a Low-Power BLE &
 Mioty Localization Tag
-● Project Timeline: August 2024 – Ongoing
+● Project Timeline: August 2025 – Ongoing
 ● Project Type: University Project (M.Sc. ICT, FAU Erlangen-Nuremberg)
 ● Technologies: KiCad, STM32F103, Semtech SX1280, TDK ICM-20948, Low-Power
 Design, Power Budget Analysis, PCB Design

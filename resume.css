@@ -1,0 +1,260 @@
+/* ============================================
+   RESUME — Print-Optimized Styles
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #1a2332;
+  background: #f0f4f8;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Print controls */
+.print-controls {
+  max-width: 800px;
+  margin: 1.5rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #5a6a7a;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #1a2332;
+}
+
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #2d4a6f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.print-btn:hover {
+  background: #1a3352;
+}
+
+/* Resume container */
+.resume {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  background: white;
+  border: 1px solid rgba(45, 74, 111, 0.12);
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Header */
+.resume-header {
+  text-align: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e8edf4;
+}
+
+.resume-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0f1720;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.resume-contact {
+  font-size: 0.8rem;
+  color: #5a6a7a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Body - two column */
+.resume-body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+}
+
+/* Sections */
+.resume-section {
+  margin-bottom: 1.5rem;
+}
+
+.resume-section-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2d4a6f;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #e8edf4;
+}
+
+/* Entries */
+.resume-entry {
+  margin-bottom: 1rem;
+}
+
+.resume-entry-compact {
+  margin-bottom: 0.6rem;
+}
+
+.resume-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.15rem;
+  font-size: 0.85rem;
+}
+
+.resume-entry-sub {
+  font-size: 0.8rem;
+  color: #5a6a7a;
+  margin-bottom: 0.3rem;
+}
+
+.resume-entry-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #8694a4;
+  white-space: nowrap;
+}
+
+.resume-text {
+  font-size: 0.8rem;
+  color: #5a6a7a;
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
+}
+
+.resume-metrics {
+  font-size: 0.75rem;
+  color: #2d4a6f;
+  font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Chips */
+.resume-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+.resume-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  background: rgba(45, 74, 111, 0.08);
+  color: #5a6a7a;
+  border-radius: 4px;
+  border: 1px solid rgba(45, 74, 111, 0.1);
+}
+
+/* Skills */
+.resume-skill-group {
+  margin-bottom: 0.5rem;
+}
+
+.resume-skill-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #8694a4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.15rem;
+}
+
+.resume-skill-values {
+  font-size: 0.78rem;
+  color: #1a2332;
+  line-height: 1.5;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .resume {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 1.5rem;
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .resume-name {
+    font-size: 1.5rem;
+  }
+
+  .resume-section-title {
+    break-after: avoid;
+  }
+
+  .resume-entry {
+    break-inside: avoid;
+  }
+
+  @page {
+    margin: 0.5in;
+    size: A4;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .resume-body {
+    grid-template-columns: 1fr;
+  }
+
+  .resume {
+    margin: 0 0.5rem 2rem;
+    padding: 1.5rem;
+  }
+
+  .print-controls {
+    padding: 0 0.5rem;
+  }
+}
