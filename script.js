@@ -153,11 +153,16 @@ function renderProjects(projects, containerId = 'project-grid') {
     const card = document.createElement('a');
     card.className = `project-card reveal reveal-delay-${(index % 4) + 1}`;
     card.href = `project.html?id=${project.id}`;
+    const isVideo = project.image && (project.image.toLowerCase().endsWith('.mp4') || project.image.toLowerCase().endsWith('.webm'));
+    const mediaHtml = isVideo 
+      ? `<video src="${project.image}" class="project-card-image" autoplay loop muted playsinline style="object-fit: cover;"></video>`
+      : `<img src="${project.image}" alt="${project.title}" class="project-card-image" loading="lazy">`;
+
     card.innerHTML = `
       <div class="project-card-categories">
         ${project.categories.map(c => `<span class="chip-category">${c}</span>`).join('')}
       </div>
-      <img src="${project.image}" alt="${project.title}" class="project-card-image" loading="lazy">
+      ${mediaHtml}
       <div class="project-card-body">
         <h3 class="project-card-title">${project.title}</h3>
         <p class="project-card-summary">${project.summary}</p>
@@ -282,9 +287,14 @@ function renderProjectDetail(project) {
       `;
 
       if (section.image) {
+        const isVideo = section.image.toLowerCase().endsWith('.mp4') || section.image.toLowerCase().endsWith('.webm');
+        const mediaHtml = isVideo
+          ? `<video src="${section.image}" autoplay loop muted playsinline style="width: 100%; border-radius: 12px;"></video>`
+          : `<img src="${section.image}" alt="${section.title}">`;
+
         html += `
           <div class="project-section-image">
-            <img src="${section.image}" alt="${section.title}">
+            ${mediaHtml}
             ${section.caption ? `<div class="project-section-caption">${section.caption}</div>` : ''}
           </div>
         `;
