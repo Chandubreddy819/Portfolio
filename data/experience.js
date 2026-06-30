@@ -9,7 +9,7 @@ const experienceData = [
     "location": "ERLANGEN, DE",
     "description": "Specializing in Networks & Digital Communication. Brings hands-on industrial experience from Robert Bosch in automating automotive sensor validation and conducting root-cause failure analysis.",
     "duration": "2+ yr",
-    "tech": ["Networks", "Digital Communication", "Embedded Systems", "IoT"]
+    "tech": ["Networks", "QOS", "Communication Systems", "Pattern Recognition & Analysis", "Signal Processing", "Embedded Systems", "IoT"]
   },
   {
     "year": "2025",
@@ -58,6 +58,6 @@ const experienceData = [
     "location": "BENGALURU, IN",
     "description": "Focus: Digital Signal Processing, Wireless Communications. Grade: First Class with Distinction (GPA 1.4 Equivalent). Developed autonomous navigation wheelchair powered by solar energy with RFID-based route authentication. Implemented motion-based control via MPU6050 sensors for intuitive navigation.",
     "duration": "4.0 yr",
-    "tech": ["Arduino", "Digital Signal Processing", "Wireless Communications", "IoT"]
+    "tech": ["Digital Signal Processing", "Antennas and Propagation", "Ad-hoc networks", "Micro-Electronics", "CMOS", "Wireless Communications", "IoT"]
   }
 ]
