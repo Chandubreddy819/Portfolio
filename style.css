@@ -1295,7 +1295,7 @@ img {
   }
 
   .hero {
-    padding: 7rem 5% 3rem;
+    padding: 7rem 5% 10rem;
   }
 
   .navbar {
@@ -1385,6 +1385,10 @@ img {
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-bottom: 20rem;
+  }
+
   .hero-name {
     font-size: 2rem;
   }
@@ -1395,6 +1399,7 @@ img {
   
   .status-fields-horizontal .status-field {
     border-right: none;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .hero-buttons {
