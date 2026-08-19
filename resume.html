@@ -1,24 +1,36 @@
+---
+title: "Resume — Chandu Baya Reddy"
+permalink: /resume.html
+---
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <title>Resume — Chandu Baya Reddy</title>
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+    <title>{{ page.title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=optional"
         rel="stylesheet">
-    <link rel="stylesheet" href="resume.css">
+    <link rel="stylesheet" href="{{ '/resume.css' | relative_url }}">
 </head>
 
 <body>
 
+    {% assign profile = site.data.profile %}
+    {% assign experience = site.data.experience %}
+    {% assign skills = site.data.skills %}
+    {% assign achievements = site.data.achievements %}
+    {% assign featured_projects = site.projects | where: "featured", true | sort: "number" %}
+    {% assign work_entries = experience | where: "type", "WORK" %}
+    {% assign edu_entries = experience | where: "type", "EDUCATION" %}
+
     <!-- Print controls (hidden during print) -->
     <div class="print-controls no-print">
-        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        <a href="{{ '/index.html' | relative_url }}" class="back-link">← Back to Portfolio</a>
         <button onclick="window.print()" class="print-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
@@ -31,24 +43,60 @@
     <!-- Resume Content -->
     <div class="resume" id="resume">
         <!-- Header -->
-        <header class="resume-header" id="resume-header"></header>
+        <header class="resume-header" id="resume-header">
+            <h1 class="resume-name">{{ profile.name }}</h1>
+            <div class="resume-contact">
+                <span>{{ profile.social.email }}</span>
+                <span>·</span>
+                <span>github.com/{{ profile.social.github }}</span>
+                <span>·</span>
+                <span>linkedin.com/in/{{ profile.social.linkedin }}</span>
+                <span>·</span>
+                <span>{{ profile.status.fields.BASED }}</span>
+            </div>
+        </header>
 
         <!-- Two-column layout -->
         <div class="resume-body">
             <div class="resume-main">
                 <!-- About -->
-                <section class="resume-section" id="resume-about"></section>
+                <section class="resume-section" id="resume-about">
+                    <h2 class="resume-section-title">About</h2>
+                    <p class="resume-text">{{ profile.intro | strip_html }}</p>
+                </section>
 
                 <!-- Experience -->
                 <section class="resume-section" id="resume-experience">
                     <h2 class="resume-section-title">Experience</h2>
-                    <div id="resume-experience-list"></div>
+                    <div id="resume-experience-list">
+                        {% for entry in work_entries %}
+                        <div class="resume-entry">
+                            <div class="resume-entry-header">
+                                <strong>{{ entry.title }}</strong>
+                                <span class="resume-entry-date">{{ entry.dateRange }}</span>
+                            </div>
+                            <div class="resume-entry-sub">{{ entry.company }} — {{ entry.location }}</div>
+                            <p class="resume-text">{{ entry.description }}</p>
+                            <div class="resume-chips">{% for t in entry.tech %}<span class="resume-chip">{{ t }}</span>{% endfor %}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </section>
 
                 <!-- Projects -->
                 <section class="resume-section" id="resume-projects">
                     <h2 class="resume-section-title">Key Projects</h2>
-                    <div id="resume-projects-list"></div>
+                    <div id="resume-projects-list">
+                        {% for p in featured_projects %}
+                        <div class="resume-entry">
+                            <div class="resume-entry-header">
+                                <strong>{{ p.title }}</strong>
+                            </div>
+                            <p class="resume-text">{{ p.summary }}</p>
+                            {% if p.metrics %}<div class="resume-metrics">{% for m in p.metrics %}<span>• {{ m }}</span> {% endfor %}</div>{% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
                 </section>
             </div>
 
@@ -56,153 +104,56 @@
                 <!-- Skills -->
                 <section class="resume-section" id="resume-skills">
                     <h2 class="resume-section-title">Technical Skills</h2>
-                    <div id="resume-skills-list"></div>
+                    <div id="resume-skills-list">
+                        {% for cat in skills %}
+                        <div class="resume-skill-group">
+                            <div class="resume-skill-label">{{ cat.category }}</div>
+                            <div class="resume-skill-values">{{ cat.skills | map: "name" | join: ", " }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </section>
 
                 <!-- Education -->
                 <section class="resume-section" id="resume-education">
                     <h2 class="resume-section-title">Education</h2>
-                    <div id="resume-education-list"></div>
+                    <div id="resume-education-list">
+                        {% for entry in edu_entries %}
+                        <div class="resume-entry resume-entry-compact">
+                            <div class="resume-entry-header">
+                                <strong>{{ entry.title }}</strong>
+                            </div>
+                            <div class="resume-entry-sub">{{ entry.company }}</div>
+                            <div class="resume-entry-date">{{ entry.dateRange }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </section>
 
                 <!-- Achievements -->
                 <section class="resume-section" id="resume-achievements">
-                    <h2 class="resume-section-title">Awards & Publications</h2>
-                    <div id="resume-achievements-list"></div>
+                    <h2 class="resume-section-title">Awards &amp; Publications</h2>
+                    <div id="resume-achievements-list">
+                        {% for a in achievements.awards %}
+                        <div class="resume-entry resume-entry-compact"><strong>{{ a.title }}</strong> — {{ a.organization }} ({{ a.year }})</div>
+                        {% endfor %}
+                        {% for p in achievements.publications %}
+                        <div class="resume-entry resume-entry-compact"><strong>{{ p.title }}</strong><br>{{ p.journal }} ({{ p.year }})</div>
+                        {% endfor %}
+                        {% for f in achievements.funding %}
+                        <div class="resume-entry resume-entry-compact"><strong>{{ f.title }}</strong> — {{ f.organization }} ({{ f.year }})</div>
+                        {% endfor %}
+                    </div>
                 </section>
 
                 <!-- Languages -->
                 <section class="resume-section" id="resume-languages">
                     <h2 class="resume-section-title">Languages</h2>
-                    <div id="resume-languages-list"></div>
+                    <div id="resume-languages-list">{% for l in achievements.languages %}<span class="resume-chip">{{ l.language }} ({{ l.level }})</span> {% endfor %}</div>
                 </section>
             </div>
         </div>
     </div>
-
-    <script src="data/profile.js"></script>
-    <script src="data/experience.js"></script>
-    <script src="data/projects.js"></script>
-    <script src="data/skills.js"></script>
-    <script src="data/achievements.js"></script>
-    <script>
-        async function buildResume() {
-            // Data is now loaded globally from the JS files
-            const profile = profileData;
-            const experience = experienceData;
-            const projects = projectsData;
-            const skills = skillsData;
-            const achievements = achievementsData;
-
-            // Header
-            const header = document.getElementById('resume-header');
-            header.innerHTML = `
-                <h1 class="resume-name">${profile.name}</h1>
-                <div class="resume-contact">
-                    <span>${profile.social.email}</span>
-                    <span>·</span>
-                    <span>github.com/${profile.social.github}</span>
-                    <span>·</span>
-                    <span>linkedin.com/in/${profile.social.linkedin}</span>
-                    <span>·</span>
-                    <span>${profile.status.fields.BASED}</span>
-                </div>
-            `;
-
-            // About
-            const aboutEl = document.getElementById('resume-about');
-            aboutEl.innerHTML = `
-                <h2 class="resume-section-title">About</h2>
-                <p class="resume-text">${profile.intro.replace(/<[^>]*>/g, '')}</p>
-            `;
-
-            // Experience (work only)
-            const workEntries = experience.filter(e => e.type === 'WORK');
-            const expList = document.getElementById('resume-experience-list');
-            workEntries.forEach(entry => {
-                expList.innerHTML += `
-                    <div class="resume-entry">
-                        <div class="resume-entry-header">
-                            <strong>${entry.title}</strong>
-                            <span class="resume-entry-date">${entry.dateRange}</span>
-                        </div>
-                        <div class="resume-entry-sub">${entry.company} — ${entry.location}</div>
-                        <p class="resume-text">${entry.description}</p>
-                        <div class="resume-chips">${entry.tech.map(t => `<span class="resume-chip">${t}</span>`).join('')}</div>
-                    </div>
-                `;
-            });
-
-            // Projects (featured)
-            const featuredProjects = projects.filter(p => p.featured);
-            const projList = document.getElementById('resume-projects-list');
-            featuredProjects.forEach(p => {
-                projList.innerHTML += `
-                    <div class="resume-entry">
-                        <div class="resume-entry-header">
-                            <strong>${p.title}</strong>
-                        </div>
-                        <p class="resume-text">${p.summary}</p>
-                        ${p.metrics ? `<div class="resume-metrics">${p.metrics.map(m => `<span>• ${m}</span>`).join(' ')}</div>` : ''}
-                    </div>
-                `;
-            });
-
-            // Skills
-            const skillsList = document.getElementById('resume-skills-list');
-            skills.forEach(cat => {
-                skillsList.innerHTML += `
-                    <div class="resume-skill-group">
-                        <div class="resume-skill-label">${cat.category}</div>
-                        <div class="resume-skill-values">${cat.skills.map(s => s.name).join(', ')}</div>
-                    </div>
-                `;
-            });
-
-            // Education
-            const eduEntries = experience.filter(e => e.type === 'EDUCATION');
-            const eduList = document.getElementById('resume-education-list');
-            eduEntries.forEach(entry => {
-                eduList.innerHTML += `
-                    <div class="resume-entry resume-entry-compact">
-                        <div class="resume-entry-header">
-                            <strong>${entry.title}</strong>
-                        </div>
-                        <div class="resume-entry-sub">${entry.company}</div>
-                        <div class="resume-entry-date">${entry.dateRange}</div>
-                    </div>
-                `;
-            });
-
-            // Achievements
-            const achList = document.getElementById('resume-achievements-list');
-            if (achievements.awards) {
-                achievements.awards.forEach(a => {
-                    achList.innerHTML += `<div class="resume-entry resume-entry-compact"><strong>${a.title}</strong> — ${a.organization} (${a.year})</div>`;
-                });
-            }
-            if (achievements.publications) {
-                achievements.publications.forEach(p => {
-                    achList.innerHTML += `<div class="resume-entry resume-entry-compact"><strong>${p.title}</strong><br>${p.journal} (${p.year})</div>`;
-                });
-            }
-            if (achievements.funding) {
-                achievements.funding.forEach(f => {
-                    achList.innerHTML += `<div class="resume-entry resume-entry-compact"><strong>${f.title}</strong> — ${f.organization} (${f.year})</div>`;
-                });
-            }
-
-            // Languages
-            const langList = document.getElementById('resume-languages-list');
-            if (achievements.languages) {
-                langList.innerHTML = achievements.languages.map(l =>
-                    `<span class="resume-chip">${l.language} (${l.level})</span>`
-                ).join(' ');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', buildResume);
-    </script>
 </body>
 
 </html>

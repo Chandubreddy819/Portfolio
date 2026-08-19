@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<main id="posts-main">
+    <div class="post-detail" id="post-detail">
+        <div class="post-detail-inner">
+            <a href="{{ '/posts.html' | relative_url }}" class="project-breadcrumb-back">← All Posts</a>
+            <div class="post-detail-meta" id="post-detail-meta">{{ page.category }}{% if page.read_time %} · {{ page.read_time }}{% endif %} · {{ page.date | date: "%b %-d, %Y" }}</div>
+            <h1 class="post-detail-title" id="post-detail-title">{{ page.title }}</h1>
+            <div class="post-detail-content" id="post-detail-content">
+                {% if page.image %}
+                <div class="post-detail-image-wrapper"><img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="post-detail-image"></div>
+                {% endif %}
+                {{ content }}
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include footer-minimal.html %}

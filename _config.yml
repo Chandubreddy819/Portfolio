@@ -1,0 +1,37 @@
+title: "Chandu Baya Reddy — Embedded Systems & IoT"
+description: "M.Sc. ICT student at FAU Erlangen specializing in Embedded Systems, IoT, and AI. Portfolio showcasing projects in BLE localization, sensor automation, and signal processing."
+url: "https://chandubreddy819.github.io"
+baseurl: "/Portfolio"
+permalink: /posts/:title/
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+      nav: "projects"
+      description: "Project details — Chandu Baya Reddy's portfolio"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      nav: "posts"
+      description: "Blog posts about embedded systems, IoT, and engineering."
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - assets/My_Resume.txt
+  - assets/Projects_portfolio.txt

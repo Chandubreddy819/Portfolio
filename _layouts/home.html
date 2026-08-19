@@ -1,0 +1,120 @@
+---
+layout: default
+---
+{% assign profile = site.data.profile %}
+<main>
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="hero-grid">
+        <div class="hero-left">
+            <h1 class="hero-name" id="hero-name">{{ profile.name }}.</h1>
+            <p class="hero-degree" id="hero-degree">{{ profile.degree }}</p>
+            <div class="hero-chips" id="hero-chips">
+                {% for chip in profile.tagline_chips %}<span class="chip">{{ chip }}</span>{% endfor %}
+            </div>
+            <p class="hero-intro" id="hero-intro">{{ profile.intro }}</p>
+            <div class="hero-availability" id="hero-availability">{{ profile.availability }}</div>
+            <div class="hero-buttons" id="hero-buttons">
+                <a href="https://linkedin.com/in/{{ profile.social.linkedin }}" class="btn" target="_blank"><i class="fab fa-linkedin btn-icon"></i> LINKEDIN</a>
+                <a href="https://github.com/{{ profile.social.github }}" class="btn" target="_blank"><i class="fab fa-github btn-icon"></i> GITHUB</a>
+                <a href="{{ profile.resume_file | relative_url }}" class="btn btn-primary" target="_self"><i class="fas fa-download btn-icon"></i> RESUME</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="status-card" id="status-card">
+                <div class="status-indicator" id="status-indicator"><span class="status-dot"></span> {{ profile.status.indicator }} · {{ profile.status.location }}</div>
+                <img src="{{ '/assets/profile.jpeg' | relative_url }}" alt="{{ profile.name }}" class="status-photo">
+                <div class="status-info" id="status-info">
+                    <div class="status-name">{{ profile.name }}</div>
+                    <div class="status-tagline">EE → embedded</div>
+                    <div class="status-bio">Passionate about creating efficient, scalable embedded solutions.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="status-bar-wrapper">
+        <div class="status-fields-horizontal" id="status-fields">
+            {% for field in profile.status.fields %}
+            <div class="status-field">
+                <span class="status-field-label">{{ field[0] }}</span>
+                <span class="status-field-value">{{ field[1] }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- § 01 · Timeline -->
+<section class="section" id="timeline-section">
+    <div class="section-inner">
+        <div class="section-label reveal">
+            <span class="section-label-tag">§ 01 · Timeline</span>
+        </div>
+        <h2 class="section-heading reveal">Experience &amp; education.</h2>
+        <div class="timeline-list" id="timeline-list">
+            {% for entry in site.data.experience %}
+            {% assign delay = forloop.index0 | modulo: 4 | plus: 1 %}
+            <div class="timeline-entry reveal reveal-delay-{{ delay }}">
+                <div class="timeline-year-col">
+                    <div class="timeline-year">{{ entry.year }}</div>
+                    <div class="timeline-daterange">{{ entry.dateRange }}</div>
+                </div>
+                <div class="timeline-body">
+                    <span class="timeline-type-badge">{{ entry.type }} · {{ entry.role }}</span>
+                    <h3 class="timeline-title">{{ entry.title }}</h3>
+                    <h4 class="timeline-company">{{ entry.company }}</h4>
+                    <div class="timeline-location">{{ entry.location }}</div>
+                    <p class="timeline-description">{{ entry.description }}</p>
+                    {% if entry.demoLink %}
+                    <a href="{{ entry.demoLink }}" target="_blank" class="btn btn-secondary" style="margin-bottom: 1.5rem; display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;"><i class="fas fa-play-circle" style="margin-right: 0.4rem;"></i>Watch Demo Video</a>
+                    {% endif %}
+                    <div class="timeline-tech">
+                        {% for t in entry.tech %}<span class="chip">{{ t }}</span>{% endfor %}
+                    </div>
+                </div>
+                <div class="timeline-duration">{{ entry.duration }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- § 02 · Selected Work -->
+<section class="section" id="projects-section">
+    <div class="section-inner">
+        <div class="section-label reveal">
+            <span class="section-label-tag">§ 02 · Selected Work</span>
+        </div>
+        <h2 class="section-heading reveal">Things I've built.</h2>
+        <div class="project-grid" id="project-grid">
+            {% assign sorted_projects = site.projects | sort: 'number' %}
+            {% for project in sorted_projects %}
+            {% include project-card.html project=project heading_tag="h3" index=forloop.index0 %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- § 03 · The Toolbox -->
+<section class="section" id="toolbox-section">
+    <div class="section-inner">
+        <div class="section-label reveal">
+            <span class="section-label-tag">§ 03 · The Toolbox</span>
+        </div>
+        <h2 class="section-heading reveal">Languages, protocols, parts, IDEs.</h2>
+        <div class="toolbox-container" id="toolbox-container">
+            {% for category in site.data.skills %}
+            {% assign delay = forloop.index0 | modulo: 4 | plus: 1 %}
+            <div class="toolbox-row reveal reveal-delay-{{ delay }}">
+                <div class="toolbox-label">{{ category.number }} {{ category.category }}</div>
+                <div class="toolbox-skills">
+                    {% for s in category.skills %}<span class="chip{% if s.primary %} filled{% endif %}">{{ s.name }}</span>{% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+</main>
+
+{% include footer.html %}

@@ -1,0 +1,5 @@
+<nav class="navbar"{% if page.nav == "home" %} id="main-nav"{% endif %}>
+    <a href="{{ '/index.html' | relative_url }}" class="nav-link{% if page.nav == 'home' %} active{% endif %}">Home</a>
+    <a href="{{ '/posts.html' | relative_url }}" class="nav-link{% if page.nav == 'posts' %} active{% endif %}">Posts</a>
+    <a href="{{ '/projects.html' | relative_url }}" class="nav-link{% if page.nav == 'projects' %} active{% endif %}">Projects</a>
+</nav>

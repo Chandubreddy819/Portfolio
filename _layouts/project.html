@@ -1,0 +1,95 @@
+---
+layout: default
+---
+<main class="project-detail" id="project-detail">
+    <div class="project-detail-inner">
+        <div class="project-breadcrumb" id="project-breadcrumb">
+            <a href="{{ '/projects.html' | relative_url }}" class="project-breadcrumb-back">← ALL PROJECTS</a>
+            <span class="project-breadcrumb-sep"></span>
+            <span class="project-breadcrumb-id">PROJECT {{ page.number }} · {{ page.categories | join: ' · ' }}</span>
+        </div>
+        <h1 class="project-detail-title" id="project-detail-title">{{ page.title }}</h1>
+        <p class="project-detail-summary" id="project-detail-summary">{{ page.summary }}{% if page.demoLink %}<br><br><a href="{{ page.demoLink }}" target="_blank" class="btn btn-secondary" style="display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;"><i class="fas fa-play-circle"></i>Watch Demo Video</a>{% endif %}</p>
+        <div class="project-detail-tech" id="project-detail-tech">
+            {% for c in page.categories %}<span class="chip-category">{{ c }}</span>{% endfor %}
+            {% for t in page.tech %}<span class="chip">{{ t }}</span>{% endfor %}
+            {% assign context_parts = "" | split: "" %}
+            {% if page.projectInfo.INSTITUTE %}{% assign context_parts = context_parts | push: page.projectInfo.INSTITUTE %}{% endif %}
+            {% if page.projectInfo.COMPANY %}{% assign context_parts = context_parts | push: page.projectInfo.COMPANY %}{% endif %}
+            {% if page.projectInfo.TIMELINE %}{% assign context_parts = context_parts | push: page.projectInfo.TIMELINE %}{% endif %}
+            {% if context_parts.size > 0 %}
+            <span class="chip chip-context" style="margin-left: 0.5rem;">{{ context_parts | join: ' · ' }}</span>
+            {% endif %}
+        </div>
+
+        <div class="project-detail-grid">
+            <div class="project-detail-content" id="project-detail-content">
+                {% for section in page.sections %}
+                <div class="project-section">
+                    <div class="project-section-label">{{ section.title }}</div>
+                    <p class="project-section-text">{{ section.content }}</p>
+                    {% if section.image %}
+                    {% assign img_lower = section.image | downcase %}
+                    <div class="project-section-image">
+                        {% if img_lower contains '.mp4' or img_lower contains '.webm' %}
+                        <video src="{{ section.image | relative_url }}" autoplay loop muted playsinline style="width: 100%; border-radius: 12px;"></video>
+                        {% else %}
+                        <img src="{{ section.image | relative_url }}" alt="{{ section.title }}">
+                        {% endif %}
+                        {% if section.caption %}<div class="project-section-caption">{{ section.caption }}</div>{% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <aside class="project-sidebar" id="project-sidebar">
+                {% if page.projectInfo %}
+                <div class="project-info-card">
+                    <div class="project-info-header">PROJECT INFO</div>
+                    {% for kv in page.projectInfo %}
+                    <div class="project-info-row">
+                        <span class="project-info-label">{{ kv[0] }}</span>
+                        <span class="project-info-value">{{ kv[1] }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if page.tech.size > 0 %}
+                <div class="project-info-card">
+                    <div class="project-info-header">TOOLS &amp; STACK</div>
+                    <div class="project-tool-chips">
+                        {% for t in page.tech %}<span class="project-tool-chip">{{ t }}</span>{% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% assign sorted_projects = site.projects | sort: 'number' %}
+                {% assign current_index = -1 %}
+                {% for p in sorted_projects %}{% if p.id == page.id %}{% assign current_index = forloop.index0 %}{% endif %}{% endfor %}
+                {% if current_index > -1 %}
+                {% assign prev_index = current_index | minus: 1 %}
+                {% assign next_index = current_index | plus: 1 %}
+                {% assign prev_project = sorted_projects[prev_index] %}
+                {% assign next_project = nil %}
+                {% if next_index < sorted_projects.size %}{% assign next_project = sorted_projects[next_index] %}{% endif %}
+                <div class="project-info-card project-nav-card">
+                    {% if current_index > 0 and prev_project %}
+                    <a href="{{ prev_project.url | relative_url }}" class="project-nav-link">← PREV<br><span style="color:var(--text-primary); text-transform:none;">{{ prev_project.title | slice: 0, 15 }}...</span></a>
+                    {% else %}
+                    <a href="#" class="project-nav-link" style="visibility:hidden;">← PREV</a>
+                    {% endif %}
+                    <a href="{{ '/projects.html' | relative_url }}" class="project-nav-link" style="text-align: center; color: var(--text-tertiary);"><br>ALL</a>
+                    {% if next_project %}
+                    <a href="{{ next_project.url | relative_url }}" class="project-nav-link" style="text-align: right;">NEXT →<br><span style="color:var(--text-primary); text-transform:none;">{{ next_project.title | slice: 0, 15 }}...</span></a>
+                    {% else %}
+                    <a href="#" class="project-nav-link" style="visibility:hidden;">NEXT →</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </aside>
+        </div>
+    </div>
+</main>
+
+{% include footer-minimal.html %}

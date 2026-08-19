@@ -1,0 +1,30 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+{% if page.layout == "project" or page.layout == "post" %}
+<title>{{ page.title }} — Chandu Baya Reddy</title>
+{% else %}
+<title>{{ page.title | default: site.title }}</title>
+{% endif %}
+<meta name="description" content="{{ page.description | default: site.description }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.description | default: site.description }}">
+<meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/profile.jpg">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:type" content="website">
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=optional"
+    rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="stylesheet" href="{{ '/style.css' | relative_url }}">

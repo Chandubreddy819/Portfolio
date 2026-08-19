@@ -1,0 +1,24 @@
+{% assign project = include.project %}
+{% assign delay = include.index | modulo: 4 | plus: 1 %}
+<a href="{{ project.url | relative_url }}" class="project-card reveal reveal-delay-{{ delay }}">
+    <div class="project-card-categories">
+        {% for c in project.categories %}<span class="chip-category">{{ c }}</span>{% endfor %}
+    </div>
+    {% assign img_lower = project.image | downcase %}
+    {% if img_lower contains '.mp4' or img_lower contains '.webm' %}
+    <video src="{{ project.image | relative_url }}" class="project-card-image" autoplay loop muted playsinline style="object-fit: cover;"></video>
+    {% else %}
+    <img src="{{ project.image | relative_url }}" alt="{{ project.title }}" class="project-card-image" loading="lazy">
+    {% endif %}
+    <div class="project-card-body">
+        <{{ include.heading_tag }} class="project-card-title">{{ project.title }}</{{ include.heading_tag }}>
+        <p class="project-card-summary">{{ project.summary }}</p>
+        {% if project.demoLink %}
+        <a href="{{ project.demoLink }}" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; margin-bottom: 1.5rem; display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation();"><i class="fas fa-play-circle"></i>Watch Demo</a>
+        {% endif %}
+        <div class="project-card-tech">
+            {% assign tech_preview = project.tech | slice: 0, 4 %}
+            {% for t in tech_preview %}<span class="chip">{{ t }}</span>{% endfor %}
+        </div>
+    </div>
+</a>
