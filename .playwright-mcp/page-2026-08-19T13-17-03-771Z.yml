@@ -1,0 +1,113 @@
+- generic [active] [ref=f9e1]:
+  - navigation [ref=f9e2]:
+    - link "Home" [ref=f9e3] [cursor=pointer]:
+      - /url: /Portfolio/index.html
+    - link "Posts" [ref=f9e4] [cursor=pointer]:
+      - /url: /Portfolio/posts.html
+    - link "Projects" [ref=f9e5] [cursor=pointer]:
+      - /url: /Portfolio/projects.html
+  - main [ref=f9e6]:
+    - generic [ref=f9e7]:
+      - generic [ref=f9e8]:
+        - link "← ALL PROJECTS" [ref=f9e9] [cursor=pointer]:
+          - /url: /Portfolio/projects.html
+        - generic [ref=f9e11]: PROJECT 01 · IoT · RF Hardware · Localization
+      - heading "Joint Bluetooth and Mioty Localization Tag" [level=1] [ref=f9e12]
+      - paragraph [ref=f9e13]: A coin-cell BLE + mioty localization tag combining precise short-range tracking with long-range fallback — one 2.4 GHz transceiver, motion-gated power, and a 9-axis IMU on a custom circular PCB.
+      - generic [ref=f9e14]:
+        - generic [ref=f9e15]: IoT
+        - generic [ref=f9e16]: RF Hardware
+        - generic [ref=f9e17]: Localization
+        - generic [ref=f9e18]: STM32F103CB
+        - generic [ref=f9e19]: SX1280
+        - generic [ref=f9e20]: ICM-20948
+        - generic [ref=f9e21]: KiCad
+        - generic [ref=f9e22]: BLE
+        - generic [ref=f9e23]: mioty
+        - generic [ref=f9e24]: C/C++
+        - generic [ref=f9e25]: Leaflet.js
+        - generic [ref=f9e26]: LIKE, FAU Erlangen-Nürnberg · Jul 2025 – Aug 2026
+      - generic [ref=f9e27]:
+        - generic [ref=f9e28]:
+          - generic [ref=f9e29]:
+            - generic [ref=f9e30]: The Coverage Gap
+            - paragraph [ref=f9e31]: "Most asset-tracking tags are built around a single trade-off. BLE tags are cheap and accurate when a receiver is nearby — but the moment the tag drifts out of range, it goes dark. Long-range IoT radios solve coverage, but at the cost of energy and precision. This project asks a different question: what if one tag could do both on a single radio? The result is a joint BLE + mioty module that transmits frequent BLE advertisements for precise tracking near infrastructure, and occasional mioty telegrams for long-range fallback everywhere else — both from the same 2.4 GHz front end."
+            - generic [ref=f9e32]:
+              - img "The Coverage Gap" [ref=f9e33]
+              - generic [ref=f9e34]: Fig 1 — BLE delivers precise position within gateway range; mioty maintains coarse coverage almost everywhere. A dual-mode tag combines both vs tracking degrades gracefully rather than dropping out at the coverage edge.
+          - generic [ref=f9e35]:
+            - generic [ref=f9e36]: Two Modes, One Radio
+            - paragraph [ref=f9e37]: "Mioty is built on Telegram Splitting (ETSI TS-UNB): instead of one continuous packet, it chops messages into small sub-packets scattered across time and frequency. A receiver needs only a fraction of them to reconstruct the message — giving mioty its robust long-range edge. The novelty here is bringing that approach onto the same 2.4 GHz front end as BLE. BLE handles the common case with ~4 Hz three-channel hops for fine-grained tracking. mioty handles the fallback with infrequent split telegrams that stay robust even when BLE coverage is absent. The two are complementary, not redundant — and both share a single SX1280 transceiver and antenna."
+            - generic [ref=f9e38]:
+              - img "Two Modes, One Radio" [ref=f9e39]
+              - generic [ref=f9e40]: Fig 2 — The SX1280 generates both radio modes. BLE hops the three advertising channels at ~4 Hz for fine-grained tracking. mioty scatters sub-packets across a time-frequency grid for robust long-range fallback.
+          - generic [ref=f9e41]:
+            - generic [ref=f9e42]: Module Architecture
+            - paragraph [ref=f9e43]: "The whole design bends toward one constraint: run from a CR2032 coin cell. The Semtech SX1280 handles both radio roles from a single 2.4 GHz front end. The STM32F103CB orchestrates everything — building BLE advertising packets, driving the mioty telegram sequence, reading the IMU, and managing sleep. A 9-axis IMU (TDK ICM-42688 / ST ISM330DLC) does double duty: its hardware wake-on-motion interrupt keeps the STM32 in deep sleep when the tag is stationary, and its motion data feeds the localization layer for dead-reckoning between radio fixes."
+            - generic [ref=f9e44]:
+              - img "Module Architecture" [ref=f9e45]
+              - generic [ref=f9e46]: Fig 3 — Component topology. STM32F103CB at the centre drives the SX1280 over SPI and the 9-axis IMU over I2C. The IMU's wake-on-motion interrupt keeps the MCU in deep sleep when stationary, dramatically extending coin-cell life.
+          - generic [ref=f9e47]:
+            - generic [ref=f9e48]: The Board
+            - paragraph [ref=f9e49]: A custom four-layer PCB designed in KiCad — a compact round board sized to sit over a coin cell. The stackup gives the 2.4 GHz signals a clean reference plane and keeps the antenna matching network tight. The design is complete and fabricated; the bill of materials is deliberately small.
+            - generic [ref=f9e50]:
+              - img "The Board" [ref=f9e51]
+              - generic [ref=f9e52]: Fig 4 — Round four-layer PCB. Meander-line inverted F antenna (IFA) at the top edge; SX1280 RF module nearest the antenna; STM32 in the center; CR2032 battery holder on the bottom. Top right shows the U.FL connector for bench testing alongside the etched antenna.
+          - generic [ref=f9e53]:
+            - generic [ref=f9e54]: Bringing Up the Radio
+            - paragraph [ref=f9e55]: "The firmware is written in C against the STM32 HAL. The BLE path is working and verified; the tag is discoverable on standard scanners, confirmed in nRF Connect and Bluetooth LE Explorer. The SX1280 is configured for BLE at 1 Mbps with Gaussian shaping, transmitting Google's Find My Device Network (FMDN) format across all three advertising channels at ~4 Hz. The mioty transmit path is confirmed working on air too — the telegram-splitting sub-burst pattern is clearly visible on a spectrum analyzer, scattered across time and frequency exactly as the TS-UNB standard predicts. Power optimization is in place: the IMU's hardware wake-on-motion interrupt keeps the STM32 in deep sleep when the tag is stationary; ramps advertising back up the instant movement is detected; and provides dead-reckoning hints to the localization layer."
+            - generic [ref=f9e56]:
+              - img "Bringing Up the Radio" [ref=f9e57]
+              - generic [ref=f9e58]: "Fig 5 — Real-time spectrum capture of a mioty uplink: sub-bursts scattered across time and frequency, the telegram-splitting signature that lets a gateway reconstruct the message even if some sub-bursts are lost to interference."
+          - generic [ref=f9e59]:
+            - generic [ref=f9e60]: Two Bugs Worth Mentioning
+            - paragraph [ref=f9e61]: "The radio looked fine on a spectrum analyzer and still didn't work — a good reminder that \"visible on air\" and \"decodable\" aren't the same thing. The mioty gateway couldn't decode telegrams that were, on inspection, correctly formed and hopping exactly where they should. The culprit was the 8 MHz crystal: its load capacitors didn't match the crystal's specified load, pulling the oscillator slightly off nominal. A single symbol's timing error from that was negligible, but accumulated across a 5.5-second, 24-sub-burst telegram it was enough to push the whole transmission out of the gateway's alignment window. Recalculating and swapping the load capacitors fixed it at the hardware level — no firmware compensation needed. The second bug was in the compass heading, not the radio. A bench rig built to sanity-check the heading math before trusting it on a real transmission showed the computed angle stuck in a narrow arc instead of sweeping the full 360°. The raw magnetometer readings were tracing a circle offset from the origin — hard-iron distortion from nearby ferrous material and the sensor's own bias — so `atan2()` could only ever see the angles that offset circle actually subtends. A one-time calibration at boot (rotate the board through a full turn for 15 seconds, track the min/max reading on each axis, and use the midpoint as an offset) re-centers the circle and fixes it."
+          - generic [ref=f9e62]:
+            - generic [ref=f9e63]: From Signals to a Map
+            - paragraph [ref=f9e64]: "Hardware that transmits is only half a localization system — something has to turn a broadcast into a resolved position. On the BLE side, the tag advertises Google's Find My Device Network (FMDN) format rather than a custom payload, so any nearby Android phone with Find My Device enabled can anonymously report having seen it, no dedicated receiver infrastructure required. A companion service requests those reports from Google's API, decrypts them with the tag's own key, and serves the resolved position to a Leaflet-based dashboard. This path is validated end to end, not just designed: a real Android phone in the field observed the tag, and the dashboard below resolved a genuine, geographically correct position for it. The equivalent path on the mioty side — a gateway that turns received uplinks into a position of its own — is the clear next step; the uplink itself reaches the gateway correctly today, but nothing downstream yet turns it into a plotted position the way the BLE/FMDN path does."
+            - generic [ref=f9e65]:
+              - img "From Signals to a Map" [ref=f9e66]
+              - generic [ref=f9e67]: "Fig 6 — The dashboard resolving a real, decrypted position for the tracker from a genuine third-party observation: ≈49.598°N, 11.002°E in Erlangen, 100m accuracy, status AGGREGATED."
+          - generic [ref=f9e68]:
+            - generic [ref=f9e69]: Why It Matters
+            - paragraph [ref=f9e70]: The appeal of this design is its economy. A single transceiver, a small microcontroller, a 9-axis IMU, and a coin cell; and from that minimal hardware comes a tag that is precise when it can be and reliable when it can't. There is no second radio to power, no gateway density assumption baked into the deployment, no hard coverage edge where tracking simply stops. A tiny module that transmits frequent BLE advertisements for precise tracking where possible, and occasional mioty telegrams for long-range fallback everywhere else. The board is complete and verified, both radios are confirmed working on air, and the BLE/FMDN path is validated end to end with a real, resolved position — the mioty-side gateway localization software is the clear next step. This work is being carried out at the Institute for Information Technology (LIKE), FAU Erlangen-Nürnberg.
+          - generic [ref=f9e71]:
+            - generic [ref=f9e72]: The Board, In the Flesh
+            - paragraph [ref=f9e73]: The design verified in silicon — KiCad ray-trace render and the full 3D copper and silkscreen layout as produced.
+            - generic [ref=f9e74]:
+              - img "The Board, In the Flesh" [ref=f9e75]
+              - generic [ref=f9e76]: "Top-left: KiCad ray-trace render. Top-right: PCB layout - 3D copper + silkscreen export. Bottom-left: Soldered board - top view (without IMU). Bottom-right: BLE Spectrum - TX active at Channels 37, 38, 39."
+        - complementary [ref=f9e77]:
+          - generic [ref=f9e78]:
+            - generic [ref=f9e79]: PROJECT INFO
+            - generic [ref=f9e80]:
+              - generic [ref=f9e81]: INSTITUTE
+              - generic [ref=f9e82]: LIKE, FAU Erlangen-Nürnberg
+            - generic [ref=f9e83]:
+              - generic [ref=f9e84]: ROLE
+              - generic [ref=f9e85]: M.Sc Student
+            - generic [ref=f9e86]:
+              - generic [ref=f9e87]: TIMELINE
+              - generic [ref=f9e88]: Jul 2025 – Aug 2026
+            - generic [ref=f9e89]:
+              - generic [ref=f9e90]: HARDWARE
+              - generic [ref=f9e91]: STM32F103, SX1280, ICM-20948, CR2032
+          - generic [ref=f9e92]:
+            - generic [ref=f9e93]: TOOLS & STACK
+            - generic [ref=f9e94]:
+              - generic [ref=f9e95]: STM32F103CB
+              - generic [ref=f9e96]: SX1280
+              - generic [ref=f9e97]: ICM-20948
+              - generic [ref=f9e98]: KiCad
+              - generic [ref=f9e99]: BLE
+              - generic [ref=f9e100]: mioty
+              - generic [ref=f9e101]: C/C++
+              - generic [ref=f9e102]: Leaflet.js
+          - generic [ref=f9e103]:
+            - link "ALL" [ref=f9e104] [cursor=pointer]:
+              - /url: /Portfolio/projects.html
+            - link "NEXT → Sensor Testing ..." [ref=f9e105] [cursor=pointer]:
+              - /url: /Portfolio/projects/bosch-sensor-automation/
+              - text: NEXT →Sensor Testing ...
+  - contentinfo [ref=f9e106]:
+    - generic [ref=f9e107]: © 2026 Chandu Baya Reddy
