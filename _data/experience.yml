@@ -21,14 +21,14 @@
   tech: ["Python", "Jupyter", "Librosa", "SciPy/NumPy", "Matplotlib", "LaTeX"]
 
 - year: "2025"
-  dateRange: "AUG '25 – PRESENT"
+  dateRange: "AUG '25 – AUG '26"
   type: "WORK"
-  role: "CURRENT PROJECT"
+  role: "RESEARCH PROJECT"
   title: "mioty® & BLE Hybrid Localization Tag"
   company: "FAU Erlangen-Nürnberg"
   location: "ERLANGEN, DE"
-  description: "Architected a dual-protocol tracking system, integrating mioty for long-range telemetry and BLE for Google's Find My Device Network (FMDN) ecosystem. Optimized system power consumption for standard CR2032 coin cells by implementing aggressive firmware sleep states and hardware reservoir capacitors. Achieved sub-2m real-time localization accuracy."
-  duration: "Ongoing"
+  description: "Architected a dual-protocol tracking system, integrating mioty for long-range telemetry and BLE for Google's Find My Device Network (FMDN) ecosystem. Optimized system power consumption for standard CR2032 coin cells by implementing aggressive firmware sleep states and hardware reservoir capacitors. Validated end to end: a real Android phone observed the tag and resolved a geographically correct position via FMDN, accurate to 100m."
+  duration: "1.1 yr"
   tech: ["mioty", "BLE", "Google FMDN", "STM32F103", "SX1280", "KiCad", "Leaflet.js", "Power Budgeting"]
 
 - year: "2022"

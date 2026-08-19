@@ -13,7 +13,7 @@ links:
 projectInfo:
   INSTITUTE: "LIKE, FAU Erlangen-Nürnberg"
   ROLE: "M.Sc Student"
-  TIMELINE: "Aug 2025 – Ongoing"
+  TIMELINE: "Jul 2025 – Aug 2026"
   HARDWARE: "STM32F103, SX1280, ICM-20948, CR2032"
 sections:
   - title: "The Coverage Gap"
