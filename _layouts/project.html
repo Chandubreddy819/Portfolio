@@ -34,7 +34,7 @@ layout: default
                         {% if img_lower contains '.mp4' or img_lower contains '.webm' %}
                         <video src="{{ section.image | relative_url }}" autoplay loop muted playsinline style="width: 100%; border-radius: 12px;"></video>
                         {% else %}
-                        <img src="{{ section.image | relative_url }}" alt="{{ section.title }}">
+                        <img src="{{ section.image | relative_url }}" alt="{{ section.title }}"{% if section.image_width %} width="{{ section.image_width }}" height="{{ section.image_height }}"{% endif %}>
                         {% endif %}
                         {% if section.caption %}<div class="project-section-caption">{{ section.caption }}</div>{% endif %}
                     </div>
