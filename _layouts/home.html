@@ -115,6 +115,61 @@ layout: default
         </div>
     </div>
 </section>
+
+<!-- § 04 · Recognition -->
+{% assign achievements = site.data.achievements %}
+{% if achievements.publications.size > 0 or achievements.awards.size > 0 or achievements.funding.size > 0 %}
+<section class="section" id="recognition-section">
+    <div class="section-inner">
+        <div class="section-label reveal">
+            <span class="section-label-tag">§ 04 · Recognition</span>
+        </div>
+        <h2 class="section-heading reveal">Publications, awards, funding.</h2>
+        <div class="recognition-list" id="recognition-list">
+            {% assign idx = 0 %}
+            {% for p in achievements.publications %}
+            {% assign delay = idx | modulo: 4 | plus: 1 %}
+            <div class="recognition-item reveal reveal-delay-{{ delay }}">
+                <div class="recognition-year">{{ p.year }}</div>
+                <div class="recognition-body">
+                    <span class="recognition-type">PUBLICATION</span>
+                    <h3 class="recognition-title">{{ p.title }}</h3>
+                    <div class="recognition-sub">{{ p.journal }}</div>
+                    {% if p.link %}<a href="{{ p.link }}" target="_blank" class="recognition-link">View →</a>{% endif %}
+                </div>
+            </div>
+            {% assign idx = idx | plus: 1 %}
+            {% endfor %}
+            {% for a in achievements.awards %}
+            {% assign delay = idx | modulo: 4 | plus: 1 %}
+            <div class="recognition-item reveal reveal-delay-{{ delay }}">
+                <div class="recognition-year">{{ a.year }}</div>
+                <div class="recognition-body">
+                    <span class="recognition-type">AWARD</span>
+                    <h3 class="recognition-title">{{ a.title }}</h3>
+                    <div class="recognition-sub">{{ a.organization }}</div>
+                    {% if a.description %}<p class="recognition-description">{{ a.description }}</p>{% endif %}
+                </div>
+            </div>
+            {% assign idx = idx | plus: 1 %}
+            {% endfor %}
+            {% for f in achievements.funding %}
+            {% assign delay = idx | modulo: 4 | plus: 1 %}
+            <div class="recognition-item reveal reveal-delay-{{ delay }}">
+                <div class="recognition-year">{{ f.year }}</div>
+                <div class="recognition-body">
+                    <span class="recognition-type">FUNDING</span>
+                    <h3 class="recognition-title">{{ f.title }}</h3>
+                    <div class="recognition-sub">{{ f.organization }}</div>
+                    {% if f.description %}<p class="recognition-description">{{ f.description }}</p>{% endif %}
+                </div>
+            </div>
+            {% assign idx = idx | plus: 1 %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
 </main>
 
 {% include footer.html %}

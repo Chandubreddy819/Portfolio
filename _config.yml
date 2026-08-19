@@ -33,5 +33,3 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
-  - assets/My_Resume.txt
-  - assets/Projects_portfolio.txt
