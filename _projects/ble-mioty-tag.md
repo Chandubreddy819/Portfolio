@@ -6,7 +6,7 @@ title: "Joint Bluetooth and Mioty Localization Tag"
 summary: "A coin-cell BLE + mioty localization tag combining precise short-range tracking with long-range fallback — one 2.4 GHz transceiver, motion-gated power, and a 9-axis IMU on a custom circular PCB."
 image: "assets/project_images/BLE_Mioty.png"
 tech: ["STM32F103CB", "SX1280", "ICM-20948", "KiCad", "BLE", "mioty", "C/C++", "Leaflet.js"]
-metrics: ["8+ months battery life", "Sub-2m accuracy", "~38 μA avg current"]
+metrics: ["8+ months battery life", "100m accuracy (real-world FMDN validation)", "~36 μA avg current"]
 featured: true
 links:
   github: "https://github.com/Chandubreddy819"
@@ -46,21 +46,26 @@ sections:
     caption: "Fig 4 — Round four-layer PCB. Meander-line inverted F antenna (IFA) at the top edge; SX1280 RF module nearest the antenna; STM32 in the center; CR2032 battery holder on the bottom. Top right shows the U.FL connector for bench testing alongside the etched antenna."
   - title: "Bringing Up the Radio"
     content: |
-      The firmware is written in C against the STM32 HAL. The BLE path is working and verified; the tag is discoverable on standard scanners, confirmed in nRF Connect and Bluetooth LE Explorer. The SX1280 is configured for BLE at 1 Mbps with Gaussian shaping at +13 dBm, transmitting in Apple iBeacon format across all three advertising channels at ~4 Hz. Each iBeacon payload encodes a zone (Major field), an identity (Minor field), and a calibrated TX power byte for distance estimation. The mioty transmit path, generating the split-telegram sub-packet sequence on the same transceiver, is the current active focus. Power optimization is in place: the IMU's hardware wake-on-motion interrupt keeps the STM32 in deep sleep when the tag is stationary; ramps advertising back up the instant movement is detected; and provides dead-reckoning hints to the localization layer.
-    image: "assets/project_images/placeholder_bring_up.png"
-    image_width: 879
-    image_height: 286
-    caption: "Fig 5 — The MCU sleeps until the IMU's wake-on-motion interrupt fires. A stationary tag drops dormant on a slow heartbeat. When moving, the radio transmits four iBeacon (BLE) advertising channels at ~4 Hz, with a mioty split-telegram on a longer interval, before returning to deep sleep."
+      The firmware is written in C against the STM32 HAL. The BLE path is working and verified; the tag is discoverable on standard scanners, confirmed in nRF Connect and Bluetooth LE Explorer. The SX1280 is configured for BLE at 1 Mbps with Gaussian shaping, transmitting Google's Find My Device Network (FMDN) format across all three advertising channels at ~4 Hz. The mioty transmit path is confirmed working on air too — the telegram-splitting sub-burst pattern is clearly visible on a spectrum analyzer, scattered across time and frequency exactly as the TS-UNB standard predicts. Power optimization is in place: the IMU's hardware wake-on-motion interrupt keeps the STM32 in deep sleep when the tag is stationary; ramps advertising back up the instant movement is detected; and provides dead-reckoning hints to the localization layer.
+    image: "assets/project_images/mioty_rf_spectrum.png"
+    image_width: 1280
+    image_height: 652
+    caption: "Fig 5 — Real-time spectrum capture of a mioty uplink: sub-bursts scattered across time and frequency, the telegram-splitting signature that lets a gateway reconstruct the message even if some sub-bursts are lost to interference."
+  - title: "Two Bugs Worth Mentioning"
+    content: |
+      The radio looked fine on a spectrum analyzer and still didn't work — a good reminder that "visible on air" and "decodable" aren't the same thing. The mioty gateway couldn't decode telegrams that were, on inspection, correctly formed and hopping exactly where they should. The culprit was the 8 MHz crystal: its load capacitors didn't match the crystal's specified load, pulling the oscillator slightly off nominal. A single symbol's timing error from that was negligible, but accumulated across a 5.5-second, 24-sub-burst telegram it was enough to push the whole transmission out of the gateway's alignment window. Recalculating and swapping the load capacitors fixed it at the hardware level — no firmware compensation needed.
+
+      The second bug was in the compass heading, not the radio. A bench rig built to sanity-check the heading math before trusting it on a real transmission showed the computed angle stuck in a narrow arc instead of sweeping the full 360°. The raw magnetometer readings were tracing a circle offset from the origin — hard-iron distortion from nearby ferrous material and the sensor's own bias — so `atan2()` could only ever see the angles that offset circle actually subtends. A one-time calibration at boot (rotate the board through a full turn for 15 seconds, track the min/max reading on each axis, and use the midpoint as an offset) re-centers the circle and fixes it.
   - title: "From Signals to a Map"
     content: |
-      Hardware that transmits is only half a localization system. The BLE advertisements already carry the hooks: iBeacon Major and Minor fields name a tag's zone and identity, and the calibrated TX power byte lets receivers estimate distance from RSSI. The companion software layer will fuse fine-grained BLE measurements where available and coarse mioty presence where not, with the IMU's dead-reckoning bridging the gaps. The final output is a Leaflet-based web interface that places each tag on a live map; BLE fixes shown as tight rings, mioty fixes as wider uncertainty circles, so an operator immediately sees which tags are pinned down and which are in coverage-fallback mode.
-    image: "assets/project_images/placeholder_signals_map.png"
-    image_width: 883
-    image_height: 316
-    caption: "Fig 6 — BLE and mioty receivers feed a fusion layer that produces position estimates at two confidence levels. The frontend Leaflet map visualizes these on live tag positions - BLE fixes as tight rings, mioty-only fallback as wider uncertainty circles."
+      Hardware that transmits is only half a localization system — something has to turn a broadcast into a resolved position. On the BLE side, the tag advertises Google's Find My Device Network (FMDN) format rather than a custom payload, so any nearby Android phone with Find My Device enabled can anonymously report having seen it, no dedicated receiver infrastructure required. A companion service requests those reports from Google's API, decrypts them with the tag's own key, and serves the resolved position to a Leaflet-based dashboard. This path is validated end to end, not just designed: a real Android phone in the field observed the tag, and the dashboard below resolved a genuine, geographically correct position for it. The equivalent path on the mioty side — a gateway that turns received uplinks into a position of its own — is the clear next step; the uplink itself reaches the gateway correctly today, but nothing downstream yet turns it into a plotted position the way the BLE/FMDN path does.
+    image: "assets/project_images/fmdn_dashboard_real.png"
+    image_width: 1920
+    image_height: 947
+    caption: "Fig 6 — The dashboard resolving a real, decrypted position for the tracker from a genuine third-party observation: ≈49.598°N, 11.002°E in Erlangen, 100m accuracy, status AGGREGATED."
   - title: "Why It Matters"
     content: |
-      The appeal of this design is its economy. A single transceiver, a small microcontroller, a 9-axis IMU, and a coin cell; and from that minimal hardware comes a tag that is precise when it can be and reliable when it can't. There is no second radio to power, no gateway density assumption baked into the deployment, no hard coverage edge where tracking simply stops. A tiny module that transmits frequent BLE advertisements for precise tracking where possible, and occasional mioty telegrams for long-range fallback everywhere else. The build is actively running in stages: the board is complete and verified, the BLE firmware chain is working, and the mioty transmit path, localization layer, and Leaflet visualization are next.
+      The appeal of this design is its economy. A single transceiver, a small microcontroller, a 9-axis IMU, and a coin cell; and from that minimal hardware comes a tag that is precise when it can be and reliable when it can't. There is no second radio to power, no gateway density assumption baked into the deployment, no hard coverage edge where tracking simply stops. A tiny module that transmits frequent BLE advertisements for precise tracking where possible, and occasional mioty telegrams for long-range fallback everywhere else. The board is complete and verified, both radios are confirmed working on air, and the BLE/FMDN path is validated end to end with a real, resolved position — the mioty-side gateway localization software is the clear next step.
 
       This work is being carried out at the Institute for Information Technology (LIKE), FAU Erlangen-Nürnberg.
   - title: "The Board, In the Flesh"
