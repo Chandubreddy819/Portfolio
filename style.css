@@ -424,6 +424,11 @@ img {
   font-weight: 600;
 }
 
+.chip-context {
+  white-space: normal;
+  max-width: 100%;
+}
+
 .chip-category {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -736,6 +741,11 @@ img {
   grid-template-columns: 1fr 400px;
   gap: 4rem;
   align-items: start;
+}
+
+.contact-left,
+.contact-right {
+  min-width: 0;
 }
 
 .contact-heading {

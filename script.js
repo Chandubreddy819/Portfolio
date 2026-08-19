@@ -267,7 +267,7 @@ function renderProjectDetail(project) {
     if (project.projectInfo.TIMELINE) contextParts.push(project.projectInfo.TIMELINE);
     if (contextParts.length > 0) {
       const contextChip = document.createElement('span');
-      contextChip.className = 'chip';
+      contextChip.className = 'chip chip-context';
       contextChip.style.marginLeft = '0.5rem';
       contextChip.textContent = contextParts.join(' · ');
       techContainer.appendChild(contextChip);
