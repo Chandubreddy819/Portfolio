@@ -148,6 +148,7 @@ function renderTimeline(experience) {
 function renderProjects(projects, containerId = 'project-grid') {
   const container = document.getElementById(containerId);
   if (!container) return;
+  const titleTag = containerId === 'all-projects-grid' ? 'h2' : 'h3';
 
   projects.forEach((project, index) => {
     const card = document.createElement('a');
@@ -164,7 +165,7 @@ function renderProjects(projects, containerId = 'project-grid') {
       </div>
       ${mediaHtml}
       <div class="project-card-body">
-        <h3 class="project-card-title">${project.title}</h3>
+        <${titleTag} class="project-card-title">${project.title}</${titleTag}>
         <p class="project-card-summary">${project.summary}</p>
         ${project.demoLink ? `<a href="${project.demoLink}" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; margin-bottom: 1.5rem; display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation();"><i class="fas fa-play-circle"></i>Watch Demo</a>` : ''}
         <div class="project-card-tech">

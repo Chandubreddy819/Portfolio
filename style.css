@@ -5,7 +5,7 @@
    ============================================ */
 
 /* --- Google Fonts Import --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=optional');
 
 /* --- Design Tokens --- */
 :root {
@@ -21,8 +21,8 @@
   --bg-footer: #1a2332;
 
   --text-primary: #1a2332;
-  --text-secondary: #5a6a7a;
-  --text-tertiary: #8694a4;
+  --text-secondary: #49596a;
+  --text-tertiary: #4f5f70;
   --text-heading: #0f1720;
   --text-link: #2d4a6f;
   --text-on-dark: #e2e8f0;
@@ -806,7 +806,7 @@ img {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.65);
   text-transform: uppercase;
   min-width: 100px;
 }
@@ -835,7 +835,7 @@ img {
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 /* ============================================
@@ -1035,7 +1035,8 @@ img {
 
 .project-section-image img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   display: block;
 }
 
