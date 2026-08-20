@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" font-family="'JetBrains Mono', 'Fira Code', monospace">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2d4a6f"/>
+    </marker>
+    <marker id="arrowGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9aa7b5"/>
+    </marker>
+  </defs>
+
+  <!-- Top row: implemented BLE/FMDN path -->
+  <g>
+    <rect x="20" y="30" width="190" height="72" rx="8" fill="#ffffff" stroke="#2d4a6f" stroke-width="1.5"/>
+    <text x="115" y="60" text-anchor="middle" font-size="13" font-weight="600" fill="#1a2332">Coin-cell tracker</text>
+    <text x="115" y="78" text-anchor="middle" font-size="13" font-weight="600" fill="#1a2332">(BLE + mioty)</text>
+
+    <rect x="260" y="30" width="190" height="72" rx="8" fill="#ffffff" stroke="#2d4a6f" stroke-width="1.5"/>
+    <text x="355" y="60" text-anchor="middle" font-size="13" font-weight="600" fill="#1a2332">Nearby Android</text>
+    <text x="355" y="78" text-anchor="middle" font-size="13" font-weight="600" fill="#1a2332">phone</text>
+
+    <rect x="500" y="30" width="190" height="72" rx="8" fill="#ffffff" stroke="#2d4a6f" stroke-width="1.5"/>
+    <text x="595" y="60" text-anchor="middle" font-size="13" font-weight="600" fill="#1a2332">Google FMDN</text>
+    <text x="595" y="78" text-anchor="middle" font-size="13" font-weight="600" fill="#1a2332">backend</text>
+
+    <rect x="740" y="30" width="200" height="72" rx="8" fill="#ffffff" stroke="#2d4a6f" stroke-width="1.5"/>
+    <text x="840" y="60" text-anchor="middle" font-size="13" font-weight="600" fill="#1a2332">BLE/FMDN</text>
+    <text x="840" y="78" text-anchor="middle" font-size="13" font-weight="600" fill="#1a2332">interfacing service</text>
+
+    <rect x="985" y="30" width="195" height="72" rx="8" fill="#eef3f8" stroke="#2d4a6f" stroke-width="2"/>
+    <text x="1082" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#2d4a6f">Dashboard</text>
+    <text x="1082" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#2d4a6f">(resolved position)</text>
+  </g>
+
+  <!-- solid arrows: implemented path -->
+  <line x1="210" y1="66" x2="255" y2="66" stroke="#2d4a6f" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="232" y="52" text-anchor="middle" font-size="10" font-style="italic" fill="#49596a">BLE/FMDN adv.</text>
+  <line x1="450" y1="66" x2="495" y2="66" stroke="#2d4a6f" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="690" y1="66" x2="735" y2="66" stroke="#2d4a6f" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="940" y1="66" x2="980" y2="66" stroke="#2d4a6f" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Bottom row: open mioty path -->
+  <g opacity="0.7">
+    <rect x="260" y="270" width="190" height="60" rx="8" fill="#ffffff" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="355" y="305" text-anchor="middle" font-size="13" font-weight="600" fill="#6b7684">mioty gateway</text>
+
+    <rect x="500" y="270" width="190" height="60" rx="8" fill="#ffffff" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="595" y="295" text-anchor="middle" font-size="12" font-weight="600" fill="#6b7684">Gateway-side</text>
+    <text x="595" y="311" text-anchor="middle" font-size="12" font-weight="600" fill="#6b7684">localisation algorithm</text>
+
+    <rect x="740" y="270" width="200" height="60" rx="8" fill="#ffffff" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="840" y="305" text-anchor="middle" font-size="12" font-weight="600" fill="#6b7684">(no resolved position)</text>
+  </g>
+
+  <!-- dashed grey arrows: open path -->
+  <path d="M115,102 L115,180 L355,180 L355,265" fill="none" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGrey)"/>
+  <text x="128" y="175" font-size="10" font-style="italic" fill="#9aa7b5">mioty uplink</text>
+  <line x1="450" y1="300" x2="495" y2="300" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGrey)"/>
+  <line x1="690" y1="300" x2="735" y2="300" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowGrey)"/>
+
+  <!-- legend -->
+  <g>
+    <line x1="20" y1="380" x2="55" y2="380" stroke="#2d4a6f" stroke-width="1.5"/>
+    <text x="63" y="384" font-size="12" fill="#1a2332">Implemented &amp; validated end to end</text>
+    <line x1="20" y1="404" x2="55" y2="404" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="63" y="408" font-size="12" fill="#6b7684">Open — future work</text>
+  </g>
+</svg>

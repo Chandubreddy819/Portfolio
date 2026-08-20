@@ -3,9 +3,9 @@ id: ble-mioty-tag
 number: "01"
 categories: ["IoT", "RF Hardware", "Localization"]
 title: "Joint Bluetooth and Mioty Localization Tag"
-summary: "A coin-cell BLE + mioty localization tag combining precise short-range tracking with long-range fallback — one 2.4 GHz transceiver, motion-gated power, and a 9-axis IMU on a custom circular PCB."
+summary: "A coin-cell BLE + mioty localization tag combining precise short-range tracking with long-range fallback — one 2.4 GHz transceiver, magnetometer-driven motion-gated power, on a custom circular PCB."
 image: "assets/project_images/BLE_Mioty.png"
-tech: ["STM32F103CB", "SX1280", "ICM-20948", "KiCad", "BLE", "mioty", "C/C++", "Leaflet.js"]
+tech: ["STM32F103CB", "SX1280", "IIS2MDC", "KiCad", "BLE", "mioty", "C/C++", "Leaflet.js"]
 metrics: ["8+ months battery life", "100m accuracy (real-world FMDN validation)", "~36 μA avg current"]
 featured: true
 links:
@@ -14,7 +14,7 @@ projectInfo:
   INSTITUTE: "LIKE, FAU Erlangen-Nürnberg"
   ROLE: "M.Sc Student"
   TIMELINE: "Jul 2025 – Aug 2026"
-  HARDWARE: "STM32F103, SX1280, ICM-20948, CR2032"
+  HARDWARE: "STM32F103, SX1280, IIS2MDC, CR2032"
 sections:
   - title: "The Coverage Gap"
     content: |
@@ -32,11 +32,11 @@ sections:
     caption: "Fig 2 — The SX1280 generates both radio modes. BLE hops the three advertising channels at ~4 Hz for fine-grained tracking. mioty scatters sub-packets across a time-frequency grid for robust long-range fallback."
   - title: "Module Architecture"
     content: |
-      The whole design bends toward one constraint: run from a CR2032 coin cell. The Semtech SX1280 handles both radio roles from a single 2.4 GHz front end. The STM32F103CB orchestrates everything — building BLE advertising packets, driving the mioty telegram sequence, reading the IMU, and managing sleep. A 9-axis IMU (TDK ICM-42688 / ST ISM330DLC) does double duty: its hardware wake-on-motion interrupt keeps the STM32 in deep sleep when the tag is stationary, and its motion data feeds the localization layer for dead-reckoning between radio fixes.
-    image: "assets/project_images/placeholder_architecture.png"
-    image_width: 1194
-    image_height: 490
-    caption: "Fig 3 — Component topology. STM32F103CB at the centre drives the SX1280 over SPI and the 9-axis IMU over I2C. The IMU's wake-on-motion interrupt keeps the MCU in deep sleep when stationary, dramatically extending coin-cell life."
+      The whole design bends toward one constraint: run from a CR2032 coin cell. The Semtech SX1280 handles both radio roles from a single 2.4 GHz front end. The STM32F103CB orchestrates everything — building BLE advertising packets, driving the mioty telegram sequence, reading the magnetometer, and managing sleep. A 9-axis IMU footprint was designed in, but only the IIS2MDC magnetometer is populated; the ICM-45686 accelerometer couldn't be sourced in time and is left for future work. The magnetometer alone drives motion-gated wake-ups via a hardware interrupt and feeds a compass heading into the mioty uplink — though without the accelerometer, that heading isn't tilt-compensated.
+    image: "assets/project_images/module_architecture.svg"
+    image_width: 1200
+    image_height: 500
+    caption: "Fig 3 — Component topology. STM32F103CB at the centre drives the SX1280 over SPI and the magnetometer over I2C. Its wake-on-motion interrupt keeps the MCU in deep sleep when stationary. The accelerometer footprint exists on the board but isn't populated yet."
   - title: "The Board"
     content: |
       A custom four-layer PCB designed in KiCad — a compact round board sized to sit over a coin cell. The stackup gives the 2.4 GHz signals a clean reference plane and keeps the antenna matching network tight. The design is complete and fabricated; the bill of materials is deliberately small.
@@ -46,7 +46,7 @@ sections:
     caption: "Fig 4 — Round four-layer PCB. Meander-line inverted F antenna (IFA) at the top edge; SX1280 RF module nearest the antenna; STM32 in the center; CR2032 battery holder on the bottom. Top right shows the U.FL connector for bench testing alongside the etched antenna."
   - title: "Bringing Up the Radio"
     content: |
-      The firmware is written in C against the STM32 HAL. The BLE path is working and verified; the tag is discoverable on standard scanners, confirmed in nRF Connect and Bluetooth LE Explorer. The SX1280 is configured for BLE at 1 Mbps with Gaussian shaping, transmitting Google's Find My Device Network (FMDN) format across all three advertising channels at ~4 Hz. The mioty transmit path is confirmed working on air too — the telegram-splitting sub-burst pattern is clearly visible on a spectrum analyzer, scattered across time and frequency exactly as the TS-UNB standard predicts. Power optimization is in place: the IMU's hardware wake-on-motion interrupt keeps the STM32 in deep sleep when the tag is stationary; ramps advertising back up the instant movement is detected; and provides dead-reckoning hints to the localization layer.
+      The firmware is written in C against the STM32 HAL. The BLE path is working and verified; the tag is discoverable on standard scanners, confirmed in nRF Connect and Bluetooth LE Explorer. The SX1280 is configured for BLE at 1 Mbps with Gaussian shaping, transmitting Google's Find My Device Network (FMDN) format across all three advertising channels at ~4 Hz. The mioty transmit path is confirmed working on air too — the telegram-splitting sub-burst pattern is clearly visible on a spectrum analyzer, scattered across time and frequency exactly as the TS-UNB standard predicts. Power optimization is in place: the magnetometer's hardware wake-on-motion interrupt keeps the STM32 in deep sleep when the tag is stationary, and ramps advertising back up the instant movement is detected.
     image: "assets/project_images/mioty_rf_spectrum.png"
     image_width: 1280
     image_height: 652
@@ -65,9 +65,13 @@ sections:
     caption: "Fig 6 — The dashboard resolving a real, decrypted position for the tracker from a genuine third-party observation: ≈49.598°N, 11.002°E in Erlangen, 100m accuracy, status AGGREGATED."
   - title: "Why It Matters"
     content: |
-      The appeal of this design is its economy. A single transceiver, a small microcontroller, a 9-axis IMU, and a coin cell; and from that minimal hardware comes a tag that is precise when it can be and reliable when it can't. There is no second radio to power, no gateway density assumption baked into the deployment, no hard coverage edge where tracking simply stops. A tiny module that transmits frequent BLE advertisements for precise tracking where possible, and occasional mioty telegrams for long-range fallback everywhere else. The board is complete and verified, both radios are confirmed working on air, and the BLE/FMDN path is validated end to end with a real, resolved position — the mioty-side gateway localization software is the clear next step.
+      The appeal of this design is its economy. A single transceiver, a small microcontroller, a magnetometer, and a coin cell; and from that minimal hardware comes a tag that is precise when it can be and reliable when it can't. There is no second radio to power, no gateway density assumption baked into the deployment, no hard coverage edge where tracking simply stops. A tiny module that transmits frequent BLE advertisements for precise tracking where possible, and occasional mioty telegrams for long-range fallback everywhere else. The board is complete and verified, both radios are confirmed working on air, and the BLE/FMDN path is validated end to end with a real, resolved position — the mioty-side gateway localization software is the clear next step.
 
       This work is being carried out at the Institute for Information Technology (LIKE), FAU Erlangen-Nürnberg.
+    image: "assets/project_images/system_concept.svg"
+    image_width: 1200
+    image_height: 420
+    caption: "System concept: the BLE/FMDN path is implemented and validated end to end; the mioty path (greyed) reaches a gateway with no localization software behind it yet."
   - title: "The Board, In the Flesh"
     content: |
       The design verified in silicon — KiCad ray-trace render and the full 3D copper and silkscreen layout as produced.

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" font-family="'JetBrains Mono', 'Fira Code', monospace">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5a6a7a"/>
+    </marker>
+    <marker id="arrGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9aa7b5"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="28" font-size="12" letter-spacing="1" fill="#4f5f70">BLOCK DIAGRAM — MODULE COMPONENT TOPOLOGY</text>
+  <line x1="0" y1="44" x2="1200" y2="44" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Power -->
+  <rect x="450" y="70" width="150" height="56" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="525" y="94" text-anchor="middle" font-size="12" font-weight="600" fill="#1a2332">CR2032</text>
+  <text x="525" y="112" text-anchor="middle" font-size="11" fill="#49596a">coin cell</text>
+
+  <rect x="650" y="70" width="160" height="56" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="730" y="94" text-anchor="middle" font-size="12" font-weight="600" fill="#1a2332">tantalum cap</text>
+  <text x="730" y="112" text-anchor="middle" font-size="11" fill="#49596a">TX pulse buffer</text>
+
+  <line x1="600" y1="98" x2="645" y2="98" stroke="#5a6a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M525,126 L525,155 L730,155 L730,130" fill="none" stroke="#5a6a7a" stroke-width="1.5"/>
+  <text x="628" y="148" text-anchor="middle" font-size="10" fill="#49596a">VCC</text>
+
+  <!-- MCU -->
+  <rect x="450" y="190" width="270" height="130" rx="10" fill="#1a2332" stroke="#1a2332" stroke-width="2"/>
+  <text x="585" y="222" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">STM32F103CB</text>
+  <text x="585" y="250" text-anchor="middle" font-size="12" fill="#cbd5e1">Cortex-M3 @ 72 MHz</text>
+  <text x="585" y="270" text-anchor="middle" font-size="11" fill="#9aa7b5">128 KB Flash · 20 KB RAM</text>
+  <text x="585" y="296" text-anchor="middle" font-size="10" fill="#9aa7b5">8 MHz xtal · 32.768 kHz RTC</text>
+
+  <!-- SX1280 -->
+  <rect x="820" y="190" width="240" height="130" rx="10" fill="#ffffff" stroke="#2d4a6f" stroke-width="2"/>
+  <text x="940" y="222" text-anchor="middle" font-size="14" font-weight="700" fill="#2d4a6f">SX1280</text>
+  <text x="940" y="250" text-anchor="middle" font-size="12" fill="#1a2332">2.4 GHz transceiver</text>
+  <text x="940" y="270" text-anchor="middle" font-size="11" fill="#49596a">BLE + mioty band</text>
+
+  <line x1="720" y1="255" x2="815" y2="255" stroke="#5a6a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="768" y="243" text-anchor="middle" font-size="10" fill="#49596a">SPI</text>
+
+  <!-- Antenna -->
+  <path d="M940,190 L940,150" stroke="#5a6a7a" stroke-width="1.5"/>
+  <path d="M940,150 L910,110 M940,150 L970,110 M940,150 L940,105" stroke="#5a6a7a" stroke-width="1.5" fill="none"/>
+  <text x="940" y="95" text-anchor="middle" font-size="10" fill="#49596a">AE1 / U.FL</text>
+
+  <!-- Magnetometer: populated -->
+  <rect x="90" y="190" width="270" height="90" rx="10" fill="#ffffff" stroke="#2d4a6f" stroke-width="2"/>
+  <rect x="90" y="190" width="270" height="30" rx="10" fill="#2d4a6f"/>
+  <text x="225" y="211" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">IIS2MDC MAGNETOMETER</text>
+  <text x="225" y="250" text-anchor="middle" font-size="12" fill="#1a2332">3-axis, populated</text>
+  <text x="225" y="268" text-anchor="middle" font-size="11" fill="#49596a">drives motion-gated wake &amp; heading</text>
+
+  <line x1="365" y1="235" x2="445" y2="235" stroke="#5a6a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="405" y="223" text-anchor="middle" font-size="10" fill="#49596a">I2C</text>
+
+  <path d="M180,280 L180,340 L450,340 L450,300" fill="none" stroke="#c17a3a" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+  <text x="315" y="333" text-anchor="middle" font-size="10" fill="#a15f28">wake-on-motion IRQ</text>
+
+  <!-- Accelerometer: unpopulated / future work -->
+  <rect x="90" y="380" width="270" height="80" rx="10" fill="#ffffff" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.75"/>
+  <text x="225" y="408" text-anchor="middle" font-size="12" font-weight="700" fill="#6b7684">ICM-45686 ACCEL + GYRO</text>
+  <text x="225" y="428" text-anchor="middle" font-size="11" fill="#6b7684">footprint only — not populated</text>
+  <text x="225" y="445" text-anchor="middle" font-size="10" fill="#9aa7b5">future work: tilt-compensated heading</text>
+
+  <line x1="225" y1="280" x2="225" y2="375" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- legend -->
+  <line x1="90" y1="486" x2="125" y2="486" stroke="#2d4a6f" stroke-width="2"/>
+  <text x="133" y="490" font-size="11" fill="#1a2332">Populated &amp; in use</text>
+  <line x1="290" y1="486" x2="325" y2="486" stroke="#9aa7b5" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="333" y="490" font-size="11" fill="#6b7684">Unpopulated — future work</text>
+</svg>
