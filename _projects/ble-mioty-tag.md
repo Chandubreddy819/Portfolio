@@ -6,7 +6,7 @@ title: "Joint Bluetooth and Mioty Localization Tag"
 summary: "A coin-cell BLE + mioty localization tag combining precise short-range tracking with long-range fallback — one 2.4 GHz transceiver, magnetometer-driven motion-gated power, on a custom circular PCB."
 image: "assets/project_images/BLE_Mioty.png"
 tech: ["STM32F103CB", "SX1280", "IIS2MDC", "KiCad", "BLE", "mioty", "C/C++", "Leaflet.js"]
-metrics: ["8+ months battery life", "100m accuracy (real-world FMDN validation)", "~36 μA avg current"]
+metrics: ["~7.5 months battery life (dual-mode)", "100m accuracy (real-world FMDN validation)", "~41 μA avg current"]
 featured: true
 links:
   github: "https://github.com/Chandubreddy819"
@@ -15,21 +15,22 @@ projectInfo:
   ROLE: "M.Sc Student"
   TIMELINE: "Jul 2025 – Aug 2026"
   HARDWARE: "STM32F103, SX1280, IIS2MDC, CR2032"
+  FORM_FACTOR: "40mm round PCB, 4-layer"
 sections:
   - title: "The Coverage Gap"
     content: |
-      Most asset-tracking tags are built around a single trade-off. BLE tags are cheap and accurate when a receiver is nearby — but the moment the tag drifts out of range, it goes dark. Long-range IoT radios solve coverage, but at the cost of energy and precision. This project asks a different question: what if one tag could do both on a single radio? The result is a joint BLE + mioty module that transmits frequent BLE advertisements for precise tracking near infrastructure, and occasional mioty telegrams for long-range fallback everywhere else — both from the same 2.4 GHz front end.
-    image: "assets/project_images/placeholder_coverage_gap.png"
+      Most asset-tracking tags are built around a single trade-off. BLE tags are cheap and accurate when a receiver is nearby — typically to within a metre or two using RSSI-based proximity — but the moment the tag drifts out of range, it goes dark. Long-range IoT radios solve coverage, but at the cost of energy and precision. This project asks a different question: what if one tag could do both on a single radio? The result is a joint BLE + mioty module that transmits frequent BLE/FMDN advertisements for close-range precision near a receiver, and occasional mioty telegrams for long-range fallback everywhere else — both from the same 2.4 GHz front end. The two accuracy figures below aren't symmetric by accident: the ~1–2 m BLE number is the typical proximity accuracy the literature and Google's own FMDN documentation cite for RSSI-based fixes, while the 100 m mioty/FMDN number is this project's own real, measured result — a genuine Android phone in the field observed the tag and a position was resolved from it (see "From Signals to a Map").
+    image: "assets/project_images/coverage_gap.svg"
     image_width: 1195
     image_height: 370
-    caption: "Fig 1 — BLE delivers precise position within gateway range; mioty maintains coarse coverage almost everywhere. A dual-mode tag combines both vs tracking degrades gracefully rather than dropping out at the coverage edge."
+    caption: "Fig 1 — BLE delivers close-range precision when a receiver is nearby; the mioty/FMDN fallback trades that precision for coverage. The 100 m figure is a real, validated fix from this project, not a spec-sheet estimate."
   - title: "Two Modes, One Radio"
     content: |
-      Mioty is built on Telegram Splitting (ETSI TS-UNB): instead of one continuous packet, it chops messages into small sub-packets scattered across time and frequency. A receiver needs only a fraction of them to reconstruct the message — giving mioty its robust long-range edge. The novelty here is bringing that approach onto the same 2.4 GHz front end as BLE. BLE handles the common case with ~4 Hz three-channel hops for fine-grained tracking. mioty handles the fallback with infrequent split telegrams that stay robust even when BLE coverage is absent. The two are complementary, not redundant — and both share a single SX1280 transceiver and antenna.
-    image: "assets/project_images/placeholder_two_modes.png"
+      Mioty is built on Telegram Splitting (ETSI TS-UNB): instead of one continuous packet, a telegram is split into 24 sub-bursts and scattered across time and frequency over roughly 5.5 seconds. A gateway needs only a fraction of them to reconstruct the message — giving mioty its robust long-range edge. The novelty here is bringing that approach onto the same 2.4 GHz front end as BLE. BLE handles the common case: three fixed advertising channels (37, 38, 39 at 2402, 2426, and 2480 MHz) fired as a single ~15 ms burst, confirmed on air exactly where the spec puts them. mioty handles the fallback, its sub-bursts visibly scattered in time and frequency on a spectrum analyzer, exactly as TS-UNB predicts. The firmware interleaves the two on a simple counter — five BLE/FMDN cycles for every one mioty cycle — so the tag defaults to frequent, cheap BLE updates and only pays mioty's higher energy cost periodically. Both share a single SX1280 transceiver and antenna; nothing is duplicated in hardware.
+    image: "assets/project_images/two_modes.svg"
     image_width: 1195
-    image_height: 442
-    caption: "Fig 2 — The SX1280 generates both radio modes. BLE hops the three advertising channels at ~4 Hz for fine-grained tracking. mioty scatters sub-packets across a time-frequency grid for robust long-range fallback."
+    image_height: 460
+    caption: "Fig 2 — Real channel/frequency data for both modes. BLE fires all three fixed advertising channels in one short burst; mioty hops pseudo-randomly across the band over its 24-sub-burst, ~5.5 s telegram."
   - title: "Module Architecture"
     content: |
       The whole design bends toward one constraint: run from a CR2032 coin cell. The Semtech SX1280 handles both radio roles from a single 2.4 GHz front end. The STM32F103CB orchestrates everything — building BLE advertising packets, driving the mioty telegram sequence, reading the magnetometer, and managing sleep. A 9-axis IMU footprint was designed in, but only the IIS2MDC magnetometer is populated; the ICM-45686 accelerometer couldn't be sourced in time and is left for future work. The magnetometer alone drives motion-gated wake-ups via a hardware interrupt and feeds a compass heading into the mioty uplink — though without the accelerometer, that heading isn't tilt-compensated.
@@ -39,7 +40,7 @@ sections:
     caption: "Fig 3 — Component topology. STM32F103CB at the centre drives the SX1280 over SPI and the magnetometer over I2C. Its wake-on-motion interrupt keeps the MCU in deep sleep when stationary. The accelerometer footprint exists on the board but isn't populated yet."
   - title: "The Board"
     content: |
-      A custom four-layer PCB designed in KiCad — a compact round board sized to sit over a coin cell. The stackup gives the 2.4 GHz signals a clean reference plane and keeps the antenna matching network tight. The design is complete and fabricated; the bill of materials is deliberately small.
+      A custom four-layer PCB designed in KiCad — a 40mm round board sized to sit directly over a CR2032 coin cell. The stackup gives the 2.4 GHz signals a clean reference plane and keeps the antenna matching network tight. The design is complete and fabricated; the bill of materials is deliberately small.
     image: "assets/project_images/placeholder_board.png"
     image_width: 721
     image_height: 687
