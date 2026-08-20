@@ -9,6 +9,17 @@
   duration: "2+ yr"
   tech: ["Networks", "QOS", "Communication Systems", "Pattern Recognition & Analysis", "Signal Processing", "Embedded Systems", "IoT"]
 
+- year: "2026"
+  dateRange: "SEP '26 – PRESENT"
+  type: "EDUCATION"
+  role: "MASTER'S THESIS"
+  title: "Ultra-Precise TDoA-Based Localization of BLE Transmitters"
+  company: "LIKE, FAU Erlangen-Nürnberg"
+  location: "ERLANGEN, DE"
+  description: "Upcoming Master's thesis extending prior lab work on Time-Difference-of-Arrival (TDoA) localization of frequency-hopping LPWAN transmitters — originally developed for mioty by my supervisor — to Bluetooth Low Energy. Investigating how BLE's own frequency-hopping advertising channels can be exploited for ultra-precise TDoA position estimates, building directly on the joint BLE + mioty tag work below."
+  duration: "0.5 yr"
+  tech: ["TDoA", "BLE", "Localization", "Frequency Hopping", "LPWAN", "Signal Processing"]
+
 - year: "2025"
   dateRange: "APR '25 – JUL '25"
   type: "WORK"
