@@ -1122,8 +1122,8 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin: 1.5rem 0 2.5rem;
   align-items: start;
+  margin: 1.5rem 0 2.5rem;
 }
 
 .gallery-item {

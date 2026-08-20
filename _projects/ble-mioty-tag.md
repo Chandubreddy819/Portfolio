@@ -74,7 +74,7 @@ sections:
     caption: "System concept: the BLE/FMDN path is implemented and validated end to end; the mioty path (greyed) reaches a gateway with no localization software behind it yet."
   - title: "The Board, In the Flesh"
     content: |
-      The design verified in silicon — KiCad ray-trace render and the full 3D copper and silkscreen layout as produced.
+      The design verified in silicon — KiCad ray-trace render, the full 3D copper and silkscreen layout, and the board as soldered, front and back.
     gallery:
       - image: "assets/project_images/board_3d_raytrace.png"
         image_width: 1477
@@ -88,8 +88,12 @@ sections:
         image_width: 1085
         image_height: 1100
         caption: "Soldered board — top view (accelerometer unpopulated)"
-      - image: "assets/project_images/ble_mioty_rf_capture.png"
-        image_width: 1280
-        image_height: 652
-        caption: "Spectrum waterfall — TX active on channels 37, 38, 39"
+      - image: "assets/project_images/board_soldered_back.png"
+        image_width: 1005
+        image_height: 1100
+        caption: "Soldered board — bottom view, CR2032 holder"
+    image: "assets/project_images/ble_mioty_rf_capture.png"
+    image_width: 1280
+    image_height: 652
+    caption: "Spectrum waterfall — TX active on channels 37, 38, 39"
 ---

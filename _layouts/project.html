@@ -37,7 +37,8 @@ layout: default
                         </div>
                         {% endfor %}
                     </div>
-                    {% elsif section.image %}
+                    {% endif %}
+                    {% if section.image %}
                     {% assign img_lower = section.image | downcase %}
                     <div class="project-section-image">
                         {% if img_lower contains '.mp4' or img_lower contains '.webm' %}
