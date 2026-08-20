@@ -75,8 +75,21 @@ sections:
   - title: "The Board, In the Flesh"
     content: |
       The design verified in silicon — KiCad ray-trace render and the full 3D copper and silkscreen layout as produced.
-    image: "assets/project_images/placeholder_board_flesh.png"
-    image_width: 895
-    image_height: 711
-    caption: "Top-left: KiCad ray-trace render. Top-right: PCB layout - 3D copper + silkscreen export. Bottom-left: Soldered board - top view (without IMU). Bottom-right: BLE Spectrum - TX active at Channels 37, 38, 39."
+    gallery:
+      - image: "assets/project_images/gallery_placeholder_1.svg"
+        image_width: 400
+        image_height: 300
+        caption: "KiCad ray-trace render"
+      - image: "assets/project_images/gallery_placeholder_2.svg"
+        image_width: 400
+        image_height: 300
+        caption: "PCB layout — 3D copper + silkscreen export"
+      - image: "assets/project_images/gallery_placeholder_3.svg"
+        image_width: 400
+        image_height: 300
+        caption: "Soldered board — top view (without IMU)"
+      - image: "assets/project_images/gallery_placeholder_4.svg"
+        image_width: 400
+        image_height: 300
+        caption: "BLE spectrum — TX active at channels 37, 38, 39"
 ---

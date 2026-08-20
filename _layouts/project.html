@@ -28,7 +28,16 @@ layout: default
                 <div class="project-section">
                     <div class="project-section-label">{{ section.title }}</div>
                     <p class="project-section-text">{{ section.content }}</p>
-                    {% if section.image %}
+                    {% if section.gallery %}
+                    <div class="project-section-gallery">
+                        {% for item in section.gallery %}
+                        <div class="gallery-item">
+                            <img src="{{ item.image | relative_url }}" alt="{{ item.caption | default: section.title }}"{% if item.image_width %} width="{{ item.image_width }}" height="{{ item.image_height }}"{% endif %}>
+                            {% if item.caption %}<div class="gallery-item-caption">{{ item.caption }}</div>{% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% elsif section.image %}
                     {% assign img_lower = section.image | downcase %}
                     <div class="project-section-image">
                         {% if img_lower contains '.mp4' or img_lower contains '.webm' %}
