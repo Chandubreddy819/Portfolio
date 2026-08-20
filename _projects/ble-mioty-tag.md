@@ -76,20 +76,20 @@ sections:
     content: |
       The design verified in silicon — KiCad ray-trace render and the full 3D copper and silkscreen layout as produced.
     gallery:
-      - image: "assets/project_images/gallery_placeholder_1.svg"
-        image_width: 400
-        image_height: 300
+      - image: "assets/project_images/board_3d_raytrace.png"
+        image_width: 1477
+        image_height: 1293
         caption: "KiCad ray-trace render"
-      - image: "assets/project_images/gallery_placeholder_2.svg"
-        image_width: 400
-        image_height: 300
-        caption: "PCB layout — 3D copper + silkscreen export"
-      - image: "assets/project_images/gallery_placeholder_3.svg"
-        image_width: 400
-        image_height: 300
-        caption: "Soldered board — top view (without IMU)"
-      - image: "assets/project_images/gallery_placeholder_4.svg"
-        image_width: 400
-        image_height: 300
-        caption: "BLE spectrum — TX active at channels 37, 38, 39"
+      - image: "assets/project_images/board_pcb_layout.png"
+        image_width: 1629
+        image_height: 1260
+        caption: "PCB layout — copper routing + silkscreen"
+      - image: "assets/project_images/board_soldered_front.png"
+        image_width: 1085
+        image_height: 1100
+        caption: "Soldered board — top view (accelerometer unpopulated)"
+      - image: "assets/project_images/ble_mioty_rf_capture.png"
+        image_width: 1280
+        image_height: 652
+        caption: "Spectrum waterfall — TX active on channels 37, 38, 39"
 ---
