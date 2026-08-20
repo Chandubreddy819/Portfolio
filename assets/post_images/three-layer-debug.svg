@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" font-family="'JetBrains Mono', 'Fira Code', monospace">
+  <rect x="0" y="0" width="1000" height="500" fill="#eef1f5"/>
+
+  <text x="40" y="55" font-size="18" font-weight="700" fill="#1a2332">Three layers, three instruments</text>
+  <text x="40" y="80" font-size="12" fill="#4f5f70">"It works" and "it's correct" are answered by different tools — diagnose top-down</text>
+
+  <!-- Layer 1 -->
+  <g>
+    <rect x="40" y="120" width="920" height="110" rx="10" fill="#ffffff" stroke="#2d4a6f" stroke-width="1.5"/>
+    <text x="65" y="150" font-size="14" font-weight="700" fill="#2d4a6f">LAYER 1 — Signal correctness</text>
+    <text x="65" y="172" font-size="11" fill="#49596a">Right frequency, right time, right modulation.</text>
+    <text x="65" y="190" font-size="11" fill="#49596a">Instrument: spectrum analyzer / SDR.</text>
+    <text x="65" y="210" font-size="10.5" fill="#8f9aa8">A clean signal here proves the PHY works — nothing more.</text>
+  </g>
+
+  <!-- Layer 2 -->
+  <g>
+    <rect x="40" y="245" width="920" height="110" rx="10" fill="#ffffff" stroke="#5c7ea3" stroke-width="1.5"/>
+    <text x="65" y="275" font-size="14" font-weight="700" fill="#5c7ea3">LAYER 2 — Timing correctness</text>
+    <text x="65" y="297" font-size="11" fill="#49596a">Sub-microsecond drift, interrupt latency, symbol timing.</text>
+    <text x="65" y="315" font-size="11" fill="#49596a">Instrument: logic analyzer / cycle counter.</text>
+    <text x="65" y="335" font-size="10.5" fill="#8f9aa8">Each burst can look individually fine while accumulated drift breaks decode.</text>
+  </g>
+
+  <!-- Layer 3 -->
+  <g>
+    <rect x="40" y="370" width="920" height="110" rx="10" fill="#ffffff" stroke="#9aa7b5" stroke-width="1.5"/>
+    <text x="65" y="400" font-size="14" font-weight="700" fill="#6b7684">LAYER 3 — System behaviour</text>
+    <text x="65" y="422" font-size="11" fill="#49596a">Sleep/wake correctness, current draw, deadlocks.</text>
+    <text x="65" y="440" font-size="11" fill="#49596a">Instrument: multimeter / current profiler / patient observation.</text>
+    <text x="65" y="460" font-size="10.5" fill="#8f9aa8">Invisible to anything that only checks "did the packet go out."</text>
+  </g>
+
+  <!-- connecting arrow -->
+  <path d="M15,175 L15,425" fill="none" stroke="#8f9aa8" stroke-width="1.5" marker-end="url(#dArrow)"/>
+  <defs>
+    <marker id="dArrow" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L5,10 L10,0 z" fill="#8f9aa8"/></marker>
+  </defs>
+</svg>

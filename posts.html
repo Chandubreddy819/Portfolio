@@ -32,7 +32,7 @@ permalink: /posts.html
                     {% endif %}
                     <div class="post-card-body">
                         <div class="post-card-category">{{ post.category }}{% if post.read_time %} · {{ post.read_time }}{% endif %}</div>
-                        <h3 class="post-card-title">{{ post.title }}</h3>
+                        <h2 class="post-card-title">{{ post.title }}</h2>
                         <p class="post-card-summary">{{ post.summary }}</p>
                         <div class="post-card-tags">
                             {% for t in post.tags %}<span class="chip">{{ t }}</span>{% endfor %}

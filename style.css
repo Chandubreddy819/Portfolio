@@ -1339,6 +1339,11 @@ img {
   margin-bottom: 1.25rem;
 }
 
+.post-detail-content p a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ============================================
    SCROLL REVEAL ANIMATIONS
    ============================================ */
