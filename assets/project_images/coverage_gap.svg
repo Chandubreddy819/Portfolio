@@ -41,8 +41,9 @@
 
   <circle cx="935" cy="220" r="95" fill="none" stroke="#2d4a6f" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.55"/>
   <circle cx="935" cy="220" r="4" fill="#2d4a6f"/>
-  <text x="935" y="330" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2332">100 m accuracy radius</text>
-  <text x="935" y="348" text-anchor="middle" font-size="10" fill="#4f5f70">real FMDN fix — validated on air</text>
+  <text x="935" y="317" text-anchor="middle" font-size="13" font-weight="700" fill="#1a2332">~10 m typical accuracy</text>
+  <text x="935" y="335" text-anchor="middle" font-size="10" fill="#4f5f70">FMDN, 3+ observing phones</text>
+  <text x="935" y="349" text-anchor="middle" font-size="9" fill="#8f9aa8">this project's validated fix: 100 m (1–2 phones)</text>
 
   <!-- connecting degrade indicator -->
   <g>
