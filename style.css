@@ -1123,6 +1123,7 @@ img {
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin: 1.5rem 0 2.5rem;
+  align-items: start;
 }
 
 .gallery-item {
