@@ -9,7 +9,7 @@ layout: default
             <span class="project-breadcrumb-id">PROJECT {{ page.number }} · {{ page.categories | join: ' · ' }}</span>
         </div>
         <h1 class="project-detail-title" id="project-detail-title">{{ page.title }}</h1>
-        <p class="project-detail-summary" id="project-detail-summary">{{ page.summary }}{% if page.demoLink %}<br><br><a href="{{ page.demoLink }}" target="_blank" class="btn btn-secondary" style="display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;"><i class="fas fa-play-circle"></i>Watch Demo Video</a>{% endif %}</p>
+        <p class="project-detail-summary" id="project-detail-summary">{{ page.summary }}{% if page.demoLink or page.links.github %}<br><br>{% if page.links.github %}<a href="{{ page.links.github }}" target="_blank" class="btn btn-secondary" style="display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem; margin-right: 0.75rem;"><i class="fab fa-github"></i>View on GitHub</a>{% endif %}{% if page.demoLink %}<a href="{{ page.demoLink }}" target="_blank" class="btn btn-secondary" style="display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;"><i class="fas fa-play-circle"></i>Watch Demo Video</a>{% endif %}{% endif %}</p>
         <div class="project-detail-tech" id="project-detail-tech">
             {% for c in page.categories %}<span class="chip-category">{{ c }}</span>{% endfor %}
             {% for t in page.tech %}<span class="chip">{{ t }}</span>{% endfor %}

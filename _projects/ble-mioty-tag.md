@@ -9,7 +9,7 @@ tech: ["STM32F103CB", "SX1280", "IIS2MDC", "KiCad", "BLE", "mioty", "C/C++", "Le
 metrics: ["~7.5 months battery life (dual-mode)", "~10m accuracy (with denser FMDN coverage)", "~41 μA avg current"]
 featured: true
 links:
-  github: "https://github.com/Chandubreddy819"
+  github: "https://github.com/Chandubreddy819/Bluetooth-and-Mioty-Localization-Hardware"
 projectInfo:
   INSTITUTE: "LIKE, FAU Erlangen-Nürnberg"
   ROLE: "M.Sc Student"
