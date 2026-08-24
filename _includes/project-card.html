@@ -14,7 +14,7 @@
         <{{ include.heading_tag }} class="project-card-title">{{ project.title }}</{{ include.heading_tag }}>
         <p class="project-card-summary">{{ project.summary }}</p>
         {% if project.demoLink %}
-        <a href="{{ project.demoLink }}" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; margin-bottom: 1.5rem; display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation();"><i class="fas fa-play-circle"></i>Watch Demo</a>
+        <a href="{{ project.demoLink }}" target="_blank" class="btn btn-secondary" style="margin-top: 1rem; margin-bottom: 1.5rem; display: inline-flex; font-size: 0.85rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation();" data-goatcounter-click="project-card-demo-{{ project.slug }}"><i class="fas fa-play-circle"></i>Watch Demo</a>
         {% endif %}
         <div class="project-card-tech">
             {% assign tech_preview = project.tech | slice: 0, 4 %}

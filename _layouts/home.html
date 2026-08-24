@@ -15,9 +15,9 @@ layout: default
             <p class="hero-intro" id="hero-intro">{{ profile.intro }}</p>
             <div class="hero-availability" id="hero-availability">{{ profile.availability }}</div>
             <div class="hero-buttons" id="hero-buttons">
-                <a href="https://linkedin.com/in/{{ profile.social.linkedin }}" class="btn" target="_blank"><i class="fab fa-linkedin btn-icon"></i> LINKEDIN</a>
-                <a href="https://github.com/{{ profile.social.github }}" class="btn" target="_blank"><i class="fab fa-github btn-icon"></i> GITHUB</a>
-                <a href="{{ profile.resume_file | relative_url }}" class="btn btn-primary" target="_self"><i class="fas fa-download btn-icon"></i> RESUME</a>
+                <a href="https://linkedin.com/in/{{ profile.social.linkedin }}" class="btn" target="_blank" data-goatcounter-click="hero-linkedin"><i class="fab fa-linkedin btn-icon"></i> LINKEDIN</a>
+                <a href="https://github.com/{{ profile.social.github }}" class="btn" target="_blank" data-goatcounter-click="hero-github"><i class="fab fa-github btn-icon"></i> GITHUB</a>
+                <a href="{{ profile.resume_file | relative_url }}" class="btn btn-primary" target="_self" data-goatcounter-click="hero-resume-download"><i class="fas fa-download btn-icon"></i> RESUME</a>
             </div>
         </div>
         <div class="hero-right">
