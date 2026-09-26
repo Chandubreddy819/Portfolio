@@ -10,15 +10,15 @@
   tech: ["Networks", "QOS", "Communication Systems", "Pattern Recognition & Analysis", "Signal Processing", "Embedded Systems", "IoT"]
 
 - year: "2026"
-  dateRange: "SEP '26 – PRESENT"
-  type: "EDUCATION"
-  role: "MASTER'S THESIS"
-  title: "Ultra-Precise TDoA-Based Localization of BLE Transmitters"
-  company: "LIKE, FAU Erlangen-Nürnberg"
+  dateRange: "OCT '26 – PRESENT"
+  type: "WORK"
+  role: "MASTER'S THESIS STUDENT"
+  title: "Differential TDoA Localization Using Bluetooth Signals"
+  company: "Fraunhofer IIS"
   location: "ERLANGEN, DE"
-  description: "Upcoming Master's thesis extending prior lab work on Time-Difference-of-Arrival (TDoA) localization of frequency-hopping LPWAN transmitters — originally developed for mioty by my supervisor — to Bluetooth Low Energy. Investigating how BLE's own frequency-hopping advertising channels can be exploited for ultra-precise TDoA position estimates, building directly on the joint BLE + mioty tag work below."
+  description: "Investigating the adaptation of an existing differential TDoA localization algorithm, originally developed for the mioty LPWAN standard, to Bluetooth Low Energy signals, in collaboration with the Chair of Information Technology and Communication Electronics (LIKE), FAU Erlangen-Nürnberg. Analyzing the influence of anchor-node synchronization errors on achievable positioning accuracy, and implementing/evaluating the system using a multi-anchor Software-Defined Radio (SDR) setup."
   duration: "0.5 yr"
-  tech: ["TDoA", "BLE", "Localization", "Frequency Hopping", "LPWAN", "Signal Processing"]
+  tech: ["BLE", "TDoA", "SDR (USRP)", "Differential Correlation", "Synchronization Analysis", "GNU Radio"]
 
 - year: "2025"
   dateRange: "APR '25 – JUL '25"
@@ -38,7 +38,7 @@
   title: "mioty® & BLE Hybrid Localization Tag"
   company: "FAU Erlangen-Nürnberg"
   location: "ERLANGEN, DE"
-  description: "Architected a dual-protocol tracking system, integrating mioty for long-range telemetry and BLE for Google's Find My Device Network (FMDN) ecosystem. Optimized system power consumption for standard CR2032 coin cells by implementing aggressive firmware sleep states and hardware reservoir capacitors. Validated end to end: a real Android phone observed the tag and resolved a geographically correct position via FMDN, accurate to 100m."
+  description: "Architected a dual-protocol tracking system, integrating mioty for long-range telemetry and BLE for Google's Find My Device Network (FMDN) ecosystem. Optimized system power consumption for standard CR2032 coin cells by implementing aggressive firmware sleep states and hardware reservoir capacitors. Validated end to end: a real Android phone observed the tag and resolved a geographically correct position via FMDN — typically ~10m accurate with denser observation, 100m from this single-phone field test."
   duration: "1.1 yr"
   tech: ["mioty", "BLE", "Google FMDN", "STM32F103", "SX1280", "KiCad", "Leaflet.js", "Power Budgeting"]
 
